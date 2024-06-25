@@ -1,7 +1,7 @@
 name: model_house
-description: "A new Flutter package project."
+description: "UI Library for Flutter and Firebase to build app quickly"
 version: 0.0.1
-homepage:
+homepage: https://github.com/thruthesky/model_house
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
