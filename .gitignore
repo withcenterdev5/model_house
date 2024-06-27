@@ -7,6 +7,9 @@ example/.idea
 example/.metadata
 
 
+venv/
+
+
 # Miscellaneous
 *.class
 *.log
