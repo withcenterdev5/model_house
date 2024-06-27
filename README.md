@@ -27,7 +27,7 @@
 
 팀 작업을 위한 Git 명령어 사용법을 꼭 익혀야 한다.
 
-예를 들면 fork 후 pr 을 하고, origin 에서 업데이트 된 내용을 local 로 받아오는 등의 작업이 필요합니다.
+예를 들면 fork 후 pr 을 하고, origin 에서 업데이트 된 내용을 local 로 받아오는 등의 작업이 필요하므로 이에 대한 이해를 충분히 해야 한다.
 
 
 ### 문서화
@@ -37,6 +37,7 @@
 그래서 가장 먼저 해야 할 것이 문서화를 어떻게 하는 것이다.
 
 소스 코드 내에 문서화를 하는 방법과 Markdown 에 문서화를 하는 두가지 방법을 배워야 한다.
+
 
 
 ### 소스 코드 업데이트 방법: fork 와 pr
@@ -90,7 +91,7 @@
 ### 모델
 
 - 모델은 각 데이터의 분류에 따라 만들어 진다. 예를 들면 사용자는 User, 게시판 카테고리는 Category, 게시글은 Post, 코멘트는 Comment, Chat, ChatRoom, ChatMessage, Report 등등으로 나뉜다.
-- 모델은 각 데이터를 serialize/deserialize 하는 것 뿐만이나, 기본적인 CRUD 및 동작 기능을 가지고 있다.
+- 모델은 데이터를 모델링하는 serialize/deserialize 기능 뿐만이나, 기본적인 CRUD 및 동작 기능을 가지고 있다.
     - 즉, 해당 Entity 의 데이터 관리 뿐만아니라 MVC 모델에서 Model 이 하는 business logic 까지 포함된다. 단, 이 business logic 은 해당 Entity 에 대한 것으로 제한을 한다. 예를 들면,
         - `user.like()`, `post.like()`, `comment.like()` 와 같은 공통되고 통일성이 있는 로직 부터, `User.create()`, `user.update()`, `user.resign()`, `user.follow()`, `user.block()` 등 해당 Entity 의 다양한 로직을 가지고 있다.
 
