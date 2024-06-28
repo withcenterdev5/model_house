@@ -61,3 +61,13 @@ friends-(request-)sent/{other-uid}/{my-uid} -> mySent(other: uid).ref
 
 
 
+
+## uid
+
+`uid` 는 문서 또는 데이터의 소유자임을 나타낸다. 이 `uid` 를 바탕으로 사용자 정보에서 `displayName` 과 `photoUrl` 을 가져와 보여준다.
+
+
+
+## 사용자 정보
+
+사용자 정보는 `UserDoc` 위젯으로 표시하며 기본적으로 메모리 캐시를 한다. 

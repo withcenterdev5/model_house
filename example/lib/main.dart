@@ -30,6 +30,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const HouseHomeScreen();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ModelHouse'),
+      ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () => showGeneralDialog(
+              context: context,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const HouseHomeScreen(),
+            ),
+            child: const Text("House with Friendship"),
+          ),
+          ElevatedButton(
+            onPressed: () => showGeneralDialog(
+              context: context,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const HouseHomeScreen(),
+            ),
+            child: const Text("House with Friendship, Chat"),
+          ),
+        ],
+      ),
+    );
   }
 }
