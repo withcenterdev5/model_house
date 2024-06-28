@@ -11,3 +11,41 @@
 
 내부적으로  `FirestoreQueryBuilder` 를 사용한다.
 
+
+
+
+
+## 파이어스토어 컬렉션과 문서
+
+
+경로를 지정하는 함수를 따로 만들어 둔다. 예를 들면, `category('qna').col` 와 같이 한다.
+
+receviedRequestRef
+
+- 파라메타가 두개 이상인 함수는 반드시 optional 변수로 쓸 것.
+- 변수 명을 아래와 같이 쓸 것
+
+
+receivedRef
+receivedListRef
+
+
+myReceivedRequestRef
+
+헬퍼 함수를 아래와 같이 만들 것.
+
+mySentListTo(otherUser: uid).ref;
+receivedListFrom(otherUser: uid, myUid: myUid).ref;
+
+
+
+friends-(request-)received/receiver/sender
+friends-(request-)received/{my-uid}/{other-uid} -> myReceived
+
+
+friends-(request-)sent/sender/receiver
+friends-(request-)sent/{my-uid}/{other-uid} -> otherSentMe(other: uid).ref
+friends-(request-)sent/{other-uid}/{my-uid} -> mySent(other: uid).ref
+
+
+
