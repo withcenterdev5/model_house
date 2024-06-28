@@ -13,9 +13,21 @@
 
 
 
+## 예외 처리
+
+참고: [예외 처리](./exception.md) 문서 참고
+
+
+## 빌더
+
+각종 builder 함수에는 그 자체로 yes 또는 no 의 값을 가진다. 예를 들면, `FirebaseAuth.instance.authStateChanged((user) => user == null ? ... : ... )` 와 같이, user 가 null 이 아니면 로그인, null 이면 로그 안한 상태를 나타내듯이, `MyDoc( builder: (doc) => doc == null ? ... : ... )` 와 같이  문서가 있는지 없는지 알 수 있다. 따로 existBuilder, nonExistBuilder 를 두지 않도록 한다.
+
 
 
 ## 파이어스토어 컬렉션과 문서
+
+경로는 `User.col` 과 같이 static 변수에, collection reference 를 지정하며, 사용자 문서는 `User().ref` 와 같이 해당 객체에 문서 reference 를 둔다.
+
 
 
 경로를 지정하는 함수를 따로 만들어 둔다. 예를 들면, `category('qna').col` 와 같이 한다.
