@@ -1,8 +1,8 @@
 # 모델하우스 이해
 
-모델하우스는 Flutter 와 Firebase 를 사용하여 빠르게 앱을 구축하기 위한 패키지이다. 아름다운 UI 디자인 뿐만아니라 회원 가입, 게시판, 채팅, 소셜 기능을 모두 포함하는 완전한 소셜 앱 패키지로 매우 쉽게 사용이 가능하도록 하는 것이 목표이다.
+`모델하우스`는 Flutter 와 Firebase 를 사용하여 빠르게 앱을 구축하기 위한 패키지이다. 아름다운 UI 디자인 뿐만아니라 회원 가입, 게시판, 채팅, 소셜 기능을 모두 포함하는 완전한 소셜 앱 패키지로 매우 쉽게 사용이 가능하도록 하는 것이 목표이다.
 
-모델하우스는 [FireFlutter](https://thruthesky.github.io/fireflutter/korean/)의 다음 버전이며, 본 프로젝트가 잘 진행되면 기존의 [FireFireflutter](https://thruthesky.github.io/fireflutter/korean/)를 대체하게 될 것이다.
+`모델하우스`는 [FireFlutter](https://thruthesky.github.io/fireflutter/korean/)의 다음 버전이며, 본 프로젝트가 잘 진행되면 기존의 [FireFireflutter](https://thruthesky.github.io/fireflutter/korean/)를 대체하게 될 것이다.
 
 
 ## 개요
