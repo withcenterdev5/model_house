@@ -6,6 +6,8 @@ example/.dart_tool/
 example/.idea
 example/.metadata
 
+**/firebase_options.dart
+
 
 venv/
 

@@ -2,6 +2,7 @@ import 'package:example/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
+import 'package:phone_sign_in/phone_sign_in.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,9 +38,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
+          //
           iam.signedIn
               ? const Text('Yes, sign in !!')
               : const Text('Not signed In'),
+          PhoneSignIn(
+            onSignInSuccess: () {},
+            onSignInFailed: (p0) => print(p0),
+          ),
           ElevatedButton(
             onPressed: () => showGeneralDialog(
               context: context,
