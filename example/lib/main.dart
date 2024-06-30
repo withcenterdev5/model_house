@@ -5,6 +5,7 @@ import 'package:model_house/model_house.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  TranslationService.instance.setDeviceLocale();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
@@ -32,10 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ModelHouse'),
+        title: Text('house.name'.t),
       ),
       body: Column(
         children: [
+          iam.signedIn
+              ? const Text('Yes, sign in !!')
+              : const Text('Not signed In'),
           ElevatedButton(
             onPressed: () => showGeneralDialog(
               context: context,

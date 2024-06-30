@@ -11,6 +11,9 @@
 - 라이센스는 MIT 이며, 누구든지 어떤 목적으로든 사용 할 수 있다.
 - `모델하우스`를 줄여서 `하우스`라고 부른다.
 - 필터링(검색)이 많이 필요한 경우 Firestore 를 사용하고 단순한 입출력의 경우 Realtime Database 를 사용한다. 특히, 단순한 입/출력이 매우 빈번한 경우, 비용적인 문제가 발생하는 데, Firestore 보다는 Realtime Database 가 제격이다. 자세한 내용은 [데이터베이스 설계](./database.md) 항목을 참고한다.
+- 지원하는 플랫폼은 ANDROID, IOS, MACOS, WEB, WINDOWS 이다.
+
+
 
 ## 참여 방법
 

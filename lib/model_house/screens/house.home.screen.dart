@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model_house/model_house.dart';
 
 class HouseHomeScreen extends StatefulWidget {
   static const String routeName = '/ModelHouse';
@@ -13,11 +14,13 @@ class _HouseHomeScreenState extends State<HouseHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ModelHouse'),
+        title: Text('house.name'.t),
       ),
-      body: const Column(
+      body: Column(
         children: [
-          Text("ModelHouse"),
+          iam.signedIn
+              ? const Text('Yes, sign in !!')
+              : const Text('Not signed In'),
         ],
       ),
     );
