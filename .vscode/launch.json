@@ -13,6 +13,14 @@
             "program": "lib/main.dart"
         },
         {
+            "name": "TEST - iOS Simulator - iPhone 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone 15 Pro Max",
+            "cwd": "example",
+            "program": "lib/test.main.dart"
+        },
+        {
             "name": "model_house (profile mode)",
             "request": "launch",
             "type": "dart",

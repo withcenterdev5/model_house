@@ -1,4 +1,5 @@
 import 'package:model_house/model_house.dart';
 
-/// iam is a simple alias of UserService.instance
+/// [iam] and [i] are the simple aliases of UserService.instance
 UserService get iam => UserService.instance;
+UserService get i => iam;

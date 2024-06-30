@@ -27,6 +27,26 @@ void main() async {
 }
 ```
 
+위의 `TranslationService.instance.setDeviceLocale();` 대신 아래와 같이 초기화를 할 수 있다.
+
+```dart
+TranslationService.instance.init(
+    deviceLocale: true,
+    defaultLocale: 'ko',
+    fallbackLocale: 'en',
+    useKeyAsDefaultText: true,
+);
+```
+
+위 코드에서 `deviceLocale` 에 true 를 지정하면, 현재 장치의 설정에 적용된 언어를 사용하라는 것이다. 기본 값은 `true` 이다.
+그리고 만약, `deviceLocale` 에서 언어를 설정하지 못하거나, `deviceLocale` 일 false 인 경우, 기본적으로 `defaultLanguage` 를 사용하게 할 수 있다.
+만약, 다국어에서 번역된 문자열을 찾지 못하면 `fallbackLocale` 의 언어에서 번역된 문자열이 있는지 찾아서 있으면 그 번역 문자열을 사용한다. 기본 값은 `en` 이다.
+그리고 `useKeyAsDefaultText` 가 true 이면, 번역된 문자열을 못찾은 경우 언어 코드(키)를 그대로 사용하라는 것이다. 만약, 이 값이 false 이면, 언어 코드(키)를 사용하되 맨 끝에 `.t` 를 붙여서 화면에 표시한다.
+
+
+
+
+
 ## 사용법
 
 `.t` 와 `.tr` 두개의 다국어 함수가 있다.

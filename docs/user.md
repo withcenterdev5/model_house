@@ -14,10 +14,17 @@
 
 ## 헬퍼 함수
 
-`Iam` 클래스는 단순히 `UserService.instance` 를 짧게 쓰기 위한 alias 이다.
+`iam` 과 `i` 는 글로벌 변수로 단순히 `UserService.instance` 를 짧게 쓰기 위한 alias 이다. 필요없으면 안써도 되고, 적절하게 사용을 하면 된다.
 
 
 `my` 변수는 글로벌 변수로 `UserService.instance.user` 를 짧게 쓰기 위한 alias 이다.
+
+## 로그인
+
+하우스에서 이메일/비밀번호를 통한 기본적인 회원 가입 및 회원 정보 수정 위젯을 제공한다. 하지만, 실제 앱 개발을 할 때에는 각 앱에 맞는 로그인을 사용하기를 바란다. 어떤 방식이든 Firebase Auth 를 통해서 로그인을 하면 된다. 그러면 각 기능들이 Firebase Auth 서비스를 통해서 로그인 정보를 액세스하고 연동하여 잘 동작을 한다.
+
+
+
 
 
 ## 개인정보
@@ -36,7 +43,40 @@ my.private.set('field', 'value');
 
 
 
+## 권한
+
+관리자는 `/settings/admins` 문서에 둔다.
+
+이 문서의 각 필드는 관리자의 UID 이며, 필드 값은 문자열 배열로 관리자 권한을 추가한다.
+
+관리자 권한에는 `root`, `customer-support-chat`, `user-block`, `post-block`, `comment-block` 등이 있다.
+
+`root` 는 모든 권한을 가진 관리자로서 다른 사용자를 관리자로 임명 할 수 있다.
+
+`customer-support-chat` 은 고객 상담을 하는 관리자이다. 여러명의 관리자가 이 권한을 가질 수 있으며, 고객(회원)이 관리자에게 질문(채팅)을 하면, 이 권한을 가진 관리자가 모두 채팅방에 들어가서 채팅이 진행된다. 즉, 고객 상담은 그룹 챗으로 진행이 되며, 다른 사용자를 초대 할 수 있다.
+
+
+`user-block` 은 사용자의 계정을 일시 정지 시킬 수 있는 권한을 가진다.
+
+`post-block` 은 글을 임시 조치(블라인드 등) 할 수 있는 권한을 가진다.
+
+`comment-block` 은 코멘트를 임시 조치(블라인드 등) 할 수 있는 권한을 가진다.
+
+
+
+
+
 ## 사용자 위젯
+
+### 파이어베이스 로그인 AuthStateChanges
+
+`AuthStateChanges` 위젯은 단순히, `Firebase.instance.authStateChanges` 내장하여 사용자의 Firestore 로그인 상태에 따라, UI 위젯을 빌드 할 수 있도록 해 놓은 것이다. 내부적으로 StreamBuilder 를 사용하므로, StreamBuilder 의 특성을 그대로 이용하면 된다.
+
+
+
+
+
+
 
 ### MyDoc
 
@@ -71,3 +111,5 @@ MyDoc.field('${Field.blocks}/$uid', builder: (v) {
 ```
 
 ### UserDoc
+
+

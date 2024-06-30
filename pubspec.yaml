@@ -19,6 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
   memory_cache: ^1.2.0
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,8 @@
 import 'package:model_house/model_house.dart';
 
+/// Translation Service
+///
+/// This service provides translation text.
 class TranslationService {
   static TranslationService? _instance;
   static TranslationService get instance =>
@@ -7,10 +10,45 @@ class TranslationService {
   TranslationService._();
 
   String? locale;
+  String defaultLocale = 'en';
+  String fallbackLocale = 'en';
+  bool useKeyAsDefaultText = false;
+
+  /// initialize the translation service
+  ///
+  /// [deviceLocale] If true, set the device locale as the default locale.
+  ///
+  /// [defaultLocale] The default locale. If the locale is not set, use this locale.
+  ///
+  /// [fallbackLocale] The fallback locale. If the text is not found in the locale, use this locale.
+  ///
+  /// [useKeyAsDefaultText] If true, use the key as the default text. If it's
+  /// false, ".t" will be added to the key. For example, if the code is
+  /// ```dart
+  /// 'hello'.t
+  /// ```
+  /// and if the key 'hello' is not found, the key will return 'hello' as text
+  /// if [useKeyAsDefaultText] is true. If it's false, it will return
+  /// 'hello.t' as text.
+  ///
+  init({
+    bool deviceLocale = true,
+    String defaultLocale = 'en',
+    String fallbackLocale = 'en',
+    bool useKeyAsDefaultText = false,
+  }) async {
+    this.defaultLocale = defaultLocale;
+    this.fallbackLocale = fallbackLocale;
+    this.useKeyAsDefaultText = useKeyAsDefaultText;
+    if (deviceLocale) {
+      await TranslationService.instance.setDeviceLocale();
+    }
+
+    dog('current locale; $locale, default locale: $defaultLocale, fallback locale: $fallbackLocale');
+  }
 
   Future setDeviceLocale() async {
     locale = await currentLocale;
-    print('locale; $locale');
   }
 
   setLocale(String locale) {
@@ -21,7 +59,7 @@ class TranslationService {
   ///
   /// If the locale is not set, return 'en' as locale.
   String getLocale() {
-    return locale ?? 'en';
+    return locale ?? defaultLocale;
   }
 
   tr(
@@ -32,9 +70,11 @@ class TranslationService {
     /// Get the translation text map from the key.
     final textMap = translationTexts[key] ?? {};
 
+    String useKey = (useKeyAsDefaultText ? key : '$key.t');
+
     /// Get the text data from the locale. If the locale is not set, return 'en' as locale.
     /// If the text data is not found, return the key.
-    final textData = textMap[locale] ?? textMap['en'] ?? key;
+    final textData = textMap[locale] ?? textMap[fallbackLocale] ?? useKey;
 
     String text;
 
@@ -50,9 +90,9 @@ class TranslationService {
       } else {
         selected = 'many';
       }
-      text = textData[selected] ?? key;
+      text = textData[selected] ?? useKey;
     } else {
-      text = key;
+      text = useKey;
     }
 
     if (args == null) {
