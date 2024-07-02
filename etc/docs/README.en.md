@@ -1,8 +1,15 @@
 # House Model
 
 
+## Building as a core developer
+
+- Create your own example app with `example/lib/main.[feature].dart`. Don't touch others app.
+
+
 
 ## Coding convention
+
+
 
 
 ### Model class
@@ -18,6 +25,12 @@ Service class does
 - showing screens
 - search & listing data
 - initialization, listening, etc.
+
+
+### Data listing
+
+Use `FirestoreQueryBuilder` or `FirebaseDatabaseQueryBuilder`. Use query builder all the time.
+
 
 
 ## Documentation
