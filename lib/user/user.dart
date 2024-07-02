@@ -57,13 +57,28 @@ class User {
     return data;
   }
 
+  /// Deprecated
+  ///
+  /// Don't use create method. It's not for creating a user.
+  ///
+  /// Use update method instead to create user data.
+  @Deprecated('This is not for use.')
   static create({
     required String uid,
   }) {}
 
+  Future update() async {
+    await doc.set({'name': name}, SetOptions(merge: true));
+  }
+
   Future updateOnAuthStateChange() async {
-    await doc.set({
-      'updatedAt': FieldValue.serverTimestamp(),
-    });
+    await doc.set(
+      {
+        'updatedAt': FieldValue.serverTimestamp(),
+      },
+      SetOptions(
+        merge: true,
+      ),
+    );
   }
 }

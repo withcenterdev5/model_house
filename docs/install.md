@@ -21,7 +21,7 @@
 
 ## 앱 설치
 
-늘 하던대로 flutter create 하고 flutterfire configure 를 한다. 참고로, Firebase SDK 는 `하우스`에 설치된 것과 동일한 버전으로 설치해야 하는데, [Flutter BoM 2.2.0](https://github.com/firebase/flutterfire/blob/master/VERSIONS.md) 버전을 설치하면 된다.
+늘 하던대로 flutter create 하고 flutterfire configure 를 한다. 참고로, Firebase SDK 는 `하우스`에 설치된 것과 동일한 버전으로 설치해야 하는데, [모델하우스 pubspec.yaml](https://github.com/thruthesky/model_house/blob/main/pubspec.yaml)파일을 참고한다.
 
 
 설치 예제
