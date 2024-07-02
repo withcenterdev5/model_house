@@ -7,7 +7,3 @@
 ## 문서
 
 - [모델하우스 공식 문서](https://thruthesky.github.io/model_house/)
-
-
-edited (What is it? @thruthesky)
-
