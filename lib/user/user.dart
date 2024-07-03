@@ -11,6 +11,7 @@ class User {
   String uid;
   String? name;
   String? gender;
+  DateTime updatedAt;
 
   CollectionReference col = FirebaseFirestore.instance.collection('users');
   DocumentReference get doc => col.doc(uid);
@@ -19,6 +20,7 @@ class User {
     required this.uid,
     this.name,
     this.gender,
+    required this.updatedAt,
   });
 
   /// Create a user with the given [uid].
@@ -32,6 +34,7 @@ class User {
   factory User.fromUid(String uid) {
     return User(
       uid: uid,
+      updatedAt: DateTime.now(),
     );
   }
 
@@ -48,6 +51,7 @@ class User {
       uid: snapshot.id,
       name: data['name'],
       gender: data['gender'],
+      updatedAt: data['updatedAt'].toDate(),
     );
   }
 
@@ -56,6 +60,7 @@ class User {
       uid: json['uid'],
       name: json['name'],
       gender: json['gender'],
+      updatedAt: json['updatedAt'],
     );
   }
 
@@ -99,6 +104,16 @@ class User {
     await doc.set({'name': name}, SetOptions(merge: true));
   }
 
+  /// 로그인 할 때, 'updatedAt' 을 업데이트
+  ///
+  /// 특히, 사용자의 문서를 listen 하기전에 문서가 미리 존재해야하는데, listen 하기 전에
+  /// 이 함수를 이용해서, 문서가 존재하는 것을 보장한다.
+  ///
+  /// Updates "updatedAt" field on user's auth state changes (logs in).
+  ///
+  /// This is because the listener will not listen if the document does not
+  /// eixsts, and this makes sure the document to be exist.
+  ///
   Future updateOnAuthStateChange() async {
     await doc.set(
       {

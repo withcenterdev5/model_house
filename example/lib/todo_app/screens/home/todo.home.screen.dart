@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class TodoHomeScreen extends StatefulWidget {
   static const String routeName = '/';
-  const HomeScreen({super.key});
+  const TodoHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TodoHomeScreen> createState() => _TodoHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TodoHomeScreenState extends State<TodoHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
