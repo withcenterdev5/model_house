@@ -1,3 +1,4 @@
+import 'package:example/simple_app/screens/user/simple.sign_in.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
 
@@ -24,7 +25,7 @@ class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
               : const Text('Not signed In'),
           AuthStateChanges(
             builder: (user) => user == null
-                ? const EmailPasswordLogin()
+                ? const SimpleSignInScreen()
                 : Column(
                     children: [
                       Text(user.uid),
