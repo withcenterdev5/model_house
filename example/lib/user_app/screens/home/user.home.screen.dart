@@ -28,7 +28,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ),
           MyDoc(
             builder: (user) => user == null
-                ? const Text('Loading...')
+                ? const SizedBox.shrink()
                 : Text('Welcome ${user.updatedAt}'),
           ),
         ],
