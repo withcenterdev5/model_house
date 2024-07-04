@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:example/simple_app/screens/user/simple.sign_in.screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:model_house/model_house.dart';
+import 'package:model_house/user/screens/user.public_profile.screen.dart';
 
 class SimpleHomeScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -12,6 +16,11 @@ class SimpleHomeScreen extends StatefulWidget {
 }
 
 class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,11 +35,18 @@ class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
           }),
           //
           ElevatedButton(
-              onPressed: () {
-                context.push(UserProfileUpdateScreen.routeName);
-              },
-              child: const Text('Edit Profile')),
-
+            onPressed: () {
+              context.push(UserProfileUpdateScreen.routeName);
+            },
+            child: const Text('Edit Profile'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context
+                  .push(UserPublicProfileScreen.routeName, extra: {'user': my});
+            },
+            child: const Text('Public Profile'),
+          ),
           ElevatedButton(
             onPressed: () async {
               final re = await showDialog<bool?>(

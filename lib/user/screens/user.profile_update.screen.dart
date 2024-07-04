@@ -21,10 +21,14 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
   void initState() {
     super.initState();
 
+    prepareData();
+  }
+
+  void prepareData() {
     displayNameController.text = my?.displayName ?? '';
-    birthYear = my?.birthYear;
-    birthMonth = my?.birthMonth;
-    birthDay = my?.birthDay;
+    birthYear = my?.birthYear ?? DateTime.now().year;
+    birthMonth = my?.birthMonth ?? DateTime.now().month;
+    birthDay = my?.birthDay ?? DateTime.now().day;
     gender = my?.gender;
   }
 
@@ -107,6 +111,12 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
                     birthMonth: birthMonth,
                     birthDay: birthDay,
                     gender: gender,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      showCloseIcon: true,
+                      content: Text('Profile Updated Successfully'.t),
+                    ),
                   );
                 },
                 child: Text('Update'.t),

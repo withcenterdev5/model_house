@@ -55,6 +55,10 @@ final translationTexts = {
     'en': 'Update Profile',
     'ko': '프로필 수정',
   },
+  'Profile Updated Successfully': {
+    'en': 'Profile Updated Successfully',
+    'ko': '프로필 수정 성공',
+  },
   'there are {n} apple': {
     'en': {
       'zero': 'There is no apple',
