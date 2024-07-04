@@ -11,6 +11,22 @@ final translationTexts = {
     'en': 'Email',
     'ko': '이메일',
   },
+  'login': {
+    'en': 'login',
+    'ko': '로그인',
+  },
+  'password': {
+    'en': 'Password',
+    'ko': '비밀번호',
+  },
+  'input password': {
+    'en': 'Input Password',
+    'ko': '비밀번호를 입력하세요',
+  },
+  'input email': {
+    'en': 'Input Email',
+    'ko': '이메일 입력',
+  },
   'there are {n} apple': {
     'en': {
       'zero': 'There is no apple',
