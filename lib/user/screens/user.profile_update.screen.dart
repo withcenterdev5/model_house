@@ -32,31 +32,26 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Update Profile'),
+        title: Text('Update Profile'.t),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LabelField(
                 label: 'displayName'.t, controller: displayNameController),
             const SizedBox(height: 24),
-            DatePicker(
-              endYear: DateTime.now().year,
-              beginYear: DateTime.now().year - 100,
-              ascendingYear: false,
-              initialDate: (year: birthYear, month: birthMonth, day: birthDay),
-              onChanged: (year, month, day) {
-                birthYear = year;
-                birthMonth = month;
-                birthDay = day;
-                setState(() {});
-              },
-              labelDay: 'day'.t,
-              labelMonth: 'month'.t,
-              labelYear: 'year'.t,
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 10,
+                bottom: 2,
+              ),
+              child: Text(
+                'gender'.t,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ),
-            const SizedBox(height: 24),
             Row(
               children: [
                 Expanded(
@@ -87,17 +82,35 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
               ],
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                my?.update(
-                  displayName: displayNameController.text,
-                  birthYear: birthYear,
-                  birthMonth: birthMonth,
-                  birthDay: birthDay,
-                  gender: gender,
-                );
+            DatePicker(
+              endYear: DateTime.now().year,
+              beginYear: DateTime.now().year - 100,
+              ascendingYear: false,
+              initialDate: (year: birthYear, month: birthMonth, day: birthDay),
+              onChanged: (year, month, day) {
+                birthYear = year;
+                birthMonth = month;
+                birthDay = day;
+                setState(() {});
               },
-              child: Text('Update'.t),
+              labelYear: '   ${'year'.t}',
+              labelMonth: ' ${'month'.t}',
+              labelDay: ' ${'day'.t}',
+            ),
+            const SizedBox(height: 24),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  my?.update(
+                    displayName: displayNameController.text,
+                    birthYear: birthYear,
+                    birthMonth: birthMonth,
+                    birthDay: birthDay,
+                    gender: gender,
+                  );
+                },
+                child: Text('Update'.t),
+              ),
             ),
           ],
         ),

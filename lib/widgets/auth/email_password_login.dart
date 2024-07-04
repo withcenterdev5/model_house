@@ -89,6 +89,7 @@ class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
                   if (re.register) {
                     widget.onRegister?.call();
                   } else {
+                    dog('register is true');
                     widget.onLogin?.call();
                   }
                 } else {

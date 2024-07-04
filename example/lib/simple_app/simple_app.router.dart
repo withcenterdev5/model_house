@@ -40,14 +40,16 @@ final simpleRouter = GoRouter(
     GoRoute(
       path: UserProfileUpdateScreen.routeName,
       builder: (context, state) => Theme(
-          data: Theme.of(globalContext).copyWith(
+          data: Theme.of(context).copyWith(
             inputDecorationTheme: const InputDecorationTheme(
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16))),
             ),
             listTileTheme: ListTileThemeData(
                 shape: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Theme.of(globalContext).colorScheme.outline),
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.outline),
             )),
           ),
           child: const UserProfileUpdateScreen()),

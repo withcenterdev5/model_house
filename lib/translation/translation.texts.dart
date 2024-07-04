@@ -47,6 +47,14 @@ final translationTexts = {
     'en': 'Update',
     'ko': '수정',
   },
+  'gender': {
+    'en': 'Gender',
+    'ko': '성별',
+  },
+  'Update Profile': {
+    'en': 'Update Profile',
+    'ko': '프로필 수정',
+  },
   'there are {n} apple': {
     'en': {
       'zero': 'There is no apple',
