@@ -18,6 +18,7 @@ export './user/user.dart';
 export './user/user.defines.dart';
 export './user/user.service.dart';
 export './user/widgets/auth_state_changes.dart';
+export './user/widgets/my_doc.dart';
 export './user/widgets/display_name.dart';
 
 export './widgets/auth/email_password_login.dart';
