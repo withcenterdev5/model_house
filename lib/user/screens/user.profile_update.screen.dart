@@ -1,3 +1,4 @@
+import 'package:date_picker_v2/date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
 
@@ -29,10 +30,18 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
       body: Column(
         children: [
           LabelField(label: 'displayName'.t, controller: displayNameController),
+          const SizedBox(height: 24),
+          DatePicker(onChanged: (year, month, day) {
+            print('$year-$month-$day');
+          }),
+          const SizedBox(height: 24),
           ElevatedButton(
             onPressed: () {
               my?.update(
                 displayName: displayNameController.text,
+                // birthYear: birthYear,
+                // birthMonth: birthMonth,
+                // birthDay: birthDay,
               );
             },
             child: const Text('Update'),
