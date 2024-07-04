@@ -13,12 +13,19 @@ class UserProfileUpdateScreen extends StatefulWidget {
 
 class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
   final displayNameController = TextEditingController();
-
+  String? gender;
+  int? birthYear;
+  int? birthMonth;
+  int? birthDay;
   @override
   void initState() {
     super.initState();
 
     displayNameController.text = my?.displayName ?? '';
+    birthYear = my?.birthYear;
+    birthMonth = my?.birthMonth;
+    birthDay = my?.birthDay;
+    gender = my?.gender;
   }
 
   @override
@@ -27,26 +34,73 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
       appBar: AppBar(
         title: const Text('Update Profile'),
       ),
-      body: Column(
-        children: [
-          LabelField(label: 'displayName'.t, controller: displayNameController),
-          const SizedBox(height: 24),
-          DatePicker(onChanged: (year, month, day) {
-            print('$year-$month-$day');
-          }),
-          const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () {
-              my?.update(
-                displayName: displayNameController.text,
-                // birthYear: birthYear,
-                // birthMonth: birthMonth,
-                // birthDay: birthDay,
-              );
-            },
-            child: const Text('Update'),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+            LabelField(
+                label: 'displayName'.t, controller: displayNameController),
+            const SizedBox(height: 24),
+            DatePicker(
+              endYear: DateTime.now().year,
+              beginYear: DateTime.now().year - 100,
+              ascendingYear: false,
+              initialDate: (year: birthYear, month: birthMonth, day: birthDay),
+              onChanged: (year, month, day) {
+                birthYear = year;
+                birthMonth = month;
+                birthDay = day;
+                setState(() {});
+              },
+              labelDay: 'day'.t,
+              labelMonth: 'month'.t,
+              labelYear: 'year'.t,
+            ),
+            const SizedBox(height: 24),
+            Row(
+              children: [
+                Expanded(
+                  child: RadioListTile<String>(
+                    title: const Text('Male'),
+                    value: 'M',
+                    groupValue: gender,
+                    onChanged: (value) {
+                      setState(() {
+                        gender = value;
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: RadioListTile<String>(
+                    title: const Text('Female'),
+                    value: 'F',
+                    groupValue: gender,
+                    onChanged: (value) {
+                      setState(() {
+                        gender = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                my?.update(
+                  displayName: displayNameController.text,
+                  birthYear: birthYear,
+                  birthMonth: birthMonth,
+                  birthDay: birthDay,
+                  gender: gender,
+                );
+              },
+              child: Text('Update'.t),
+            ),
+          ],
+        ),
       ),
     );
   }

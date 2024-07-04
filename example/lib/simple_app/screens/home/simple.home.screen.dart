@@ -26,9 +26,42 @@ class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
           }),
           //
           ElevatedButton(
+              onPressed: () {
+                context.push(UserProfileUpdateScreen.routeName);
+              },
+              child: const Text('Edit Profile')),
+
+          ElevatedButton(
+            onPressed: () async {
+              final re = await showDialog<bool?>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: const Text('Are you sure?'),
+                        content: const Text('Do you want to resign?'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                context.pop(true);
+                              },
+                              child: const Text('Yes')),
+                          TextButton(
+                              onPressed: () {
+                                context.pop(false);
+                              },
+                              child: const Text('No'))
+                        ],
+                      ));
+
+              if (re == false) return;
+              dog('$re');
+              // user resign
+            },
+            child: const Text('Resign'),
+          ),
+          ElevatedButton(
             onPressed: () {
               i.signOut();
-              context.go(SimpleSignInScreen.routeName);
+              context.push(SimpleSignInScreen.routeName);
             },
             child: const Text('Logout'),
           ),

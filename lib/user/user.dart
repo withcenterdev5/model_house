@@ -13,6 +13,9 @@ class User {
   String? name;
   String? gender;
   DateTime updatedAt;
+  int? birthYear;
+  int? birthMonth;
+  int? birthDay;
 
   CollectionReference col = FirebaseFirestore.instance.collection('users');
   DocumentReference get doc => col.doc(uid);
@@ -23,6 +26,9 @@ class User {
     this.name,
     this.gender,
     required this.updatedAt,
+    this.birthYear,
+    this.birthMonth,
+    this.birthDay,
   });
 
   /// Create a user with the given [uid].
@@ -67,6 +73,9 @@ class User {
       updatedAt: json['updatedAt'] is Timestamp
           ? (json['updatedAt'] as Timestamp).toDate()
           : DateTime.now(),
+      birthYear: json['birthYear'],
+      birthMonth: json['birthMonth'],
+      birthDay: json['birthDay'],
     );
   }
 
@@ -76,6 +85,9 @@ class User {
     data['name'] = name;
     data['gender'] = gender;
     data['updatedAt'] = updatedAt;
+    data['birthYear'] = birthYear;
+    data['birthMonth'] = birthMonth;
+    data['birthDay'] = birthDay;
     return data;
   }
 
@@ -110,10 +122,18 @@ class User {
 
   Future update({
     String? displayName,
+    int? birthYear,
+    int? birthMonth,
+    int? birthDay,
+    String? gender,
   }) async {
     await doc.set(
       {
         'displayName': displayName,
+        'birthYear': birthYear,
+        'birthMonth': birthMonth,
+        'birthDay': birthDay,
+        'gender': gender
       },
       SetOptions(merge: true),
     );

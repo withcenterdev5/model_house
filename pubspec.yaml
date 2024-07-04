@@ -10,7 +10,9 @@ environment:
 dependencies:
   cloud_firestore: 5.0.2
   cloud_functions: 5.0.2
-  date_picker_v2: ^0.0.2
+  date_picker_v2:
+    git: https://github.com/withcenterdev4/date_picker.git
+  device_info_plus: 9.0.0
   devicelocale: ^0.7.1
   firebase_auth: 5.1.1
   firebase_core: 3.1.1
