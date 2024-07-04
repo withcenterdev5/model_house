@@ -21,6 +21,7 @@ export './user/user.service.dart';
 export './user/widgets/auth_state.dart';
 export './user/widgets/my_doc.dart';
 export './user/widgets/display_name.dart';
+export './user/widgets/user.list_tile.dart';
 
 export './widgets/auth/email_password_login.dart';
 export './widgets/input/label_field.dart';

@@ -32,7 +32,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
           LabelField(label: 'displayName'.t, controller: displayNameController),
           const SizedBox(height: 24),
           DatePicker(onChanged: (year, month, day) {
-            print('$year-$month-$day');
+            // print('$year-$month-$day');
           }),
           const SizedBox(height: 24),
           ElevatedButton(
