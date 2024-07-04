@@ -3,7 +3,6 @@ cloud_firestore=/Users/dev/.pub-cache/hosted/pub.dev/cloud_firestore-5.0.2/
 cloud_firestore_web=/Users/dev/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.0.2/
 cloud_functions=/Users/dev/.pub-cache/hosted/pub.dev/cloud_functions-5.0.2/
 cloud_functions_web=/Users/dev/.pub-cache/hosted/pub.dev/cloud_functions_web-4.9.9/
-device_info_plus=/Users/dev/.pub-cache/hosted/pub.dev/device_info_plus-9.0.0/
 devicelocale=/Users/dev/.pub-cache/hosted/pub.dev/devicelocale-0.7.1/
 firebase_auth=/Users/dev/.pub-cache/hosted/pub.dev/firebase_auth-5.1.1/
 firebase_auth_web=/Users/dev/.pub-cache/hosted/pub.dev/firebase_auth_web-5.12.3/

@@ -156,28 +156,11 @@ packages:
   date_picker_v2:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: b70270077a171b023c17d1c9cac248fe75f7aa4e
-      url: "https://github.com/withcenterdev4/date_picker.git"
-    source: git
+      name: date_picker_v2
+      sha256: "3aa17237056aa5778d0929c68c69eacb13a2ad9937078eac2fad970476322a80"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.3"
-  device_info_plus:
-    dependency: transitive
-    description:
-      name: device_info_plus
-      sha256: "9b1a0c32b2a503f8fe9f8764fac7b5fcd4f6bd35d8f49de5350bccf9e2a33b8a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.0"
-  device_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: device_info_plus_platform_interface
-      sha256: d3b01d5868b50ae571cd1dc6e502fc94d956b665756180f7b16ead09e836fd64
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.0"
   devicelocale:
     dependency: transitive
     description:
@@ -194,14 +177,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
-  ffi:
-    dependency: transitive
-    description:
-      name: ffi
-      sha256: "493f37e7df1804778ff3a53bd691d8692ddf69702cf4c1c1096a2e41b4779e21"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.2"
   file:
     dependency: transitive
     description:
@@ -733,22 +708,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  win32:
-    dependency: transitive
-    description:
-      name: win32
-      sha256: "5a751eddf9db89b3e5f9d50c20ab8612296e4e8db69009788d6c8b060a84191c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.4"
-  win32_registry:
-    dependency: transitive
-    description:
-      name: win32_registry
-      sha256: "1c52f994bdccb77103a6231ad4ea331a244dbcef5d1f37d8462f713143b0bfae"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   yaml:
     dependency: transitive
     description:

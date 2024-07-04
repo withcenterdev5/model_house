@@ -90,7 +90,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
               endYear: DateTime.now().year,
               beginYear: DateTime.now().year - 100,
               ascendingYear: false,
-              initialDate: (year: birthYear, month: birthMonth, day: birthDay),
+              // initialDate: (year: birthYear, month: birthMonth, day: birthDay),
               onChanged: (year, month, day) {
                 birthYear = year;
                 birthMonth = month;

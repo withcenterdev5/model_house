@@ -64,8 +64,9 @@ final simpleRouter = GoRouter(
     ),
     GoRoute(
       path: UserPublicProfileScreen.routeName,
-      builder: (context, state) =>
-          UserPublicProfileScreen(user: (state.extra as Map)['user']),
+      builder: (context, state) => UserPublicProfileScreen(
+        user: (state.extra as Map)['user'],
+      ),
     ),
   ],
 );
