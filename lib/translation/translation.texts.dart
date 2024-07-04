@@ -27,6 +27,10 @@ final translationTexts = {
     'en': 'Input Email',
     'ko': '이메일 입력',
   },
+  'input email': {
+    'en': 'Input email',
+    'ko': '이메일을 입력하세요',
+  },
   'there are {n} apple': {
     'en': {
       'zero': 'There is no apple',

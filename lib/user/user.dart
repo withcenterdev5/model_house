@@ -9,6 +9,7 @@ import 'package:model_house/model_house.dart';
 /// [private] is the private field that will be used to store the user's data.
 class User {
   String uid;
+  String? displayName;
   String? name;
   String? gender;
   DateTime updatedAt;
@@ -18,6 +19,7 @@ class User {
 
   User({
     required this.uid,
+    this.displayName,
     this.name,
     this.gender,
     required this.updatedAt,
@@ -59,6 +61,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json, String uid) {
     return User(
       uid: uid,
+      displayName: json['displayName'],
       name: json['name'],
       gender: json['gender'],
       updatedAt: json['updatedAt'] is Timestamp
@@ -69,8 +72,10 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['displayName'] = displayName;
     data['name'] = name;
     data['gender'] = gender;
+    data['updatedAt'] = updatedAt;
     return data;
   }
 
@@ -103,8 +108,15 @@ class User {
     throw HouseException(code.house.notForUse, 'User.create is not for use.');
   }
 
-  Future update() async {
-    await doc.set({'name': name}, SetOptions(merge: true));
+  Future update({
+    String? displayName,
+  }) async {
+    await doc.set(
+      {
+        'displayName': displayName,
+      },
+      SetOptions(merge: true),
+    );
   }
 
   /// 로그인 할 때, 'updatedAt' 을 업데이트

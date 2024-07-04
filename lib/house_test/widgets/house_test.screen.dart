@@ -18,7 +18,7 @@ class _HouseTestScreenState extends State<HouseTestScreen> {
       ),
       body: Column(
         children: [
-          AuthStateChanges(
+          AuthState(
             builder: (user) => user == null
                 ? const Text('Not signed In')
                 : Text('Sign in with uid: ${user.uid}'),
