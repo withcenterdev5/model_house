@@ -1,4 +1,4 @@
-import 'package:example/user_app/user_app.router.dart';
+import 'package:example/widget_app/widget_app.router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
@@ -28,7 +28,7 @@ class _UserAppState extends State<UserApp> {
   @override
   build(context) {
     return MaterialApp.router(
-      routerConfig: userRouter,
+      routerConfig: widgetRouter,
     );
   }
 }

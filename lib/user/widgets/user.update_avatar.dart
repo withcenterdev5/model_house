@@ -50,14 +50,6 @@ class UserUpdateAvatar extends StatefulWidget {
 class _UserUpdateAvatarState extends State<UserUpdateAvatar> {
   double? progress;
 
-  late User user;
-
-  @override
-  void initState() {
-    super.initState();
-    user = User.fromUid(my!.uid);
-  }
-
   bool get isNotUploading {
     return progress == null || progress == 0 || progress!.isNaN;
   }
@@ -78,10 +70,12 @@ class _UserUpdateAvatarState extends State<UserUpdateAvatar> {
       },
       child: Stack(
         children: [
-          UserAvatar(
-            uid: user.uid,
-            size: widget.size,
-            radius: widget.radius,
+          MyDoc(
+            builder: (user) => UserAvatar(
+              user: user!,
+              size: widget.size,
+              radius: widget.radius,
+            ),
           ),
           uploadProgressIndicator(color: Colors.white),
           if (isUploading)

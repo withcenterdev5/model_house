@@ -29,12 +29,12 @@
             "program": "lib/main.simple.dart"
         },
         {
-            "name": "User - iOS Simulator - iPhone 15 Pro Max",
+            "name": "All Widgets - iOS Simulator - iPhone 15 Pro Max",
             "request": "launch",
             "type": "dart",
             "deviceId": "iPhone 15 Pro Max",
             "cwd": "example",
-            "program": "lib/main.user.dart"
+            "program": "lib/main.widgets.dart"
         },
         {
             "name": "TEST - iOS Simulator - iPhone 15 Pro Max",
