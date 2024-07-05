@@ -57,15 +57,12 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              const Text('asdasdadas'),
             const Center(
               child: UserUpdateAvatar(
-                backgroundColor: Colors.red,
                 size: 140,
                 radius: 75,
               ),
             ),
-          
             LabelField(label: 'name'.t, controller: nameController),
             LabelField(
                 label: 'displayName'.t, controller: displayNameController),
