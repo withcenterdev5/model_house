@@ -19,6 +19,8 @@ class Task {
   DateTime createdAt;
   DateTime updatedAt;
   List<String> assignTo = [];
+  DateTime? startAt;
+  DateTime? endAt;
 
   Task({
     required this.id,
@@ -26,6 +28,8 @@ class Task {
     this.content = '',
     required this.createdAt,
     required this.updatedAt,
+    this.startAt,
+    this.endAt,
     this.assignTo = const [],
   });
 
@@ -36,12 +40,17 @@ class Task {
   factory Task.fromJson(Map<String, dynamic> json, String id) {
     final Timestamp? createdAt = json['createdAt'];
     final Timestamp? updatedAt = json['updatedAt'];
+    final Timestamp? startAt = json['startAt'];
+    final Timestamp? endAt = json['endAt'];
+
     return Task(
       id: id,
       title: json['title'],
       content: json['content'] ?? '',
       createdAt: createdAt == null ? DateTime.now() : createdAt.toDate(),
       updatedAt: updatedAt == null ? DateTime.now() : updatedAt.toDate(),
+      startAt: startAt?.toDate(),
+      endAt: endAt?.toDate(),
       assignTo: List<String>.from(json['assignTo'] ?? []),
     );
   }
@@ -78,13 +87,16 @@ class Task {
   Future<void> update({
     String? title,
     String? content,
+    DateTime? startAt,
+    DateTime? endAt,
   }) async {
     final data = <String, dynamic>{
       'updatedAt': FieldValue.serverTimestamp(),
     };
     if (title != null) data['title'] = title;
     if (content != null) data['content'] = content;
-
+    if (startAt != null) data['startAt'] = startAt;
+    if (endAt != null) data['endAt'] = endAt;
     await ref.update(data);
   }
 
