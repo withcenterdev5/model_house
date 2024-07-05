@@ -37,25 +37,26 @@ testReport() {
   }
 }
 
-Future<User> testLoginAs({
+Future<String> testLoginAs({
   required String email,
   required String password,
 }) async {
   await loginOrRegister(email: email, password: password);
-  return await User.get(FirebaseAuth.instance.currentUser!.uid) as User;
+  // return await User.get(FirebaseAuth.instance.currentUser!.uid) as User;
+  return FirebaseAuth.instance.currentUser!.uid;
 }
 
 Future<void> testLogout() async {
   await UserService.instance.signOut();
 }
 
-Future<User> loginAsA() async {
+Future<String> loginAsA() async {
   const email = "test-user-a@email.com";
   const password = "12345,*";
   return await testLoginAs(email: email, password: password);
 }
 
-Future<User> loginAsB() async {
+Future<String> loginAsB() async {
   const email = "test-user-b@email.com";
   const password = "12345,*";
   return await testLoginAs(email: email, password: password);

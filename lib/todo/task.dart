@@ -19,6 +19,8 @@ class Task {
   DateTime createdAt;
   DateTime updatedAt;
   List<String> assignTo = [];
+  DateTime? startAt;
+  DateTime? endAt;
 
   Task({
     required this.id,
@@ -26,6 +28,8 @@ class Task {
     this.content = '',
     required this.createdAt,
     required this.updatedAt,
+    this.startAt,
+    this.endAt,
     this.assignTo = const [],
   });
 
@@ -36,12 +40,17 @@ class Task {
   factory Task.fromJson(Map<String, dynamic> json, String id) {
     final Timestamp? createdAt = json['createdAt'];
     final Timestamp? updatedAt = json['updatedAt'];
+    final Timestamp? startAt = json['startAt'];
+    final Timestamp? endAt = json['endAt'];
+
     return Task(
       id: id,
       title: json['title'],
       content: json['content'] ?? '',
       createdAt: createdAt == null ? DateTime.now() : createdAt.toDate(),
       updatedAt: updatedAt == null ? DateTime.now() : updatedAt.toDate(),
+      startAt: startAt?.toDate(),
+      endAt: endAt?.toDate(),
       assignTo: List<String>.from(json['assignTo'] ?? []),
     );
   }
@@ -55,15 +64,11 @@ class Task {
 
   static Future<Task?> get(String id) async {
     final snapshot = await TodoService.instance.taskCol.doc(id).get();
-    if (snapshot.exists) {
-      return Task.fromSnapshot(snapshot);
-    }
-    return null;
+    if (!snapshot.exists) return null;
+    return Task.fromSnapshot(snapshot);
   }
 
   /// Create a task
-  ///
-  ///
   static Future<DocumentReference> create({
     required String title,
     String? content,
@@ -78,31 +83,37 @@ class Task {
 
   /// Update task
   ///
-  ///
+  /// NOTE: This cannot be used to nullify any field.
   Future<void> update({
     String? title,
     String? content,
+    DateTime? startAt,
+    DateTime? endAt,
   }) async {
     final data = <String, dynamic>{
       'updatedAt': FieldValue.serverTimestamp(),
     };
     if (title != null) data['title'] = title;
     if (content != null) data['content'] = content;
-
+    if (startAt != null) data['startAt'] = startAt;
+    if (endAt != null) data['endAt'] = endAt;
     await ref.update(data);
   }
 
   /// Delete task including all the related assigns and data.
   Future<void> delete() async {
-    ///
-    await ref.delete();
-
-    ///
     final assigns = await TodoService.instance.assignCol
         .where('taskId', isEqualTo: id)
         .get();
-    for (final assign in assigns.docs) {
-      await assign.reference.delete();
-    }
+
+    // Delete the assigns under the task first
+    final assignDeleteFutures =
+        assigns.docs.map((assign) => assign.reference.delete());
+
+    // Await for all the assign delete futures
+    await Future.wait(assignDeleteFutures);
+
+    // Delete the task if all the assigns are deleted
+    await ref.delete();
   }
 }
