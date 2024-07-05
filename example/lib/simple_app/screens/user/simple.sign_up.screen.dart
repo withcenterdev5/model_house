@@ -34,7 +34,8 @@ class _SimpleSignUpScreenState extends State<SimpleSignUpScreen> {
           LabelField(label: 'Display name', controller: lastNameController),
           ElevatedButton(
               onPressed: () {
-                my?.update(displayName: displayNameController.text);
+
+                my?.update(displayName: displayNameController.text,name: '${firstNameController.text} ${lastNameController.text}',);
                 context.go(SimpleHomeScreen.routeName);
               },
               child: const Text('Done'))
