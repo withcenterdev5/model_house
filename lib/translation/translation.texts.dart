@@ -3,6 +3,14 @@ final translationTexts = {
     'en': 'Model House',
     'ko': '모델 하우스',
   },
+  'home': {
+    'en': 'Home',
+    'ko': '홈',
+  },
+  'menu': {
+    'en': 'Menu',
+    'ko': '메뉴',
+  },
   'name': {
     'en': 'Name',
     'ko': '이름',
@@ -58,6 +66,10 @@ final translationTexts = {
   'Profile Updated Successfully': {
     'en': 'Profile Updated Successfully',
     'ko': '프로필 수정 성공',
+  },
+  'user': {
+    'en': 'User',
+    'ko': '사용자',
   },
   'there are {n} apple': {
     'en': {

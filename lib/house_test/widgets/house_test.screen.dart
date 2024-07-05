@@ -27,7 +27,7 @@ class _HouseTestScreenState extends State<HouseTestScreen> {
           const Text("To start house test, press the button below"),
           ElevatedButton(
             onPressed: () async {
-              await User.fromUid('abc').updateOnAuthStateChange();
+              // await User.fromUid('abc').updateOnAuthStateChange();
             },
             child: const Text('User Model Test'),
           ),
