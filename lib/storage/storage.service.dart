@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+// import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:model_house/model_house.dart';
 import 'package:model_house/storage/widget/storage.upload_selection_bottom_sheet.dart';
@@ -65,6 +65,7 @@ class StorageService {
   ///
   /// This method does not handle any exception. You may handle it outisde if you want.
   ///
+  /// TODO remove compressQuality since it does not support Windows.
   Future<String?> uploadFile({
     Function(double)? progress,
     Function? complete,
@@ -91,12 +92,12 @@ class StorageService {
     // So, we should check the file type before compressing.
     // Or... add custom compressing function for file and video, and/or image.
     if (compressQuality > 0) {
-      final xfile = await FlutterImageCompress.compressAndGetFile(
-        file.absolute.path,
-        '${file.absolute.path}.compressed.jpg',
-        quality: 100 - compressQuality,
-      );
-      file = File(xfile!.path);
+      // final xfile = await FlutterImageCompress.compressAndGetFile(
+      //   file.absolute.path,
+      //   '${file.absolute.path}.compressed.jpg',
+      //   quality: 100 - compressQuality,
+      // );
+      // file = File(xfile!.path);
     }
     final uploadTask = fileRef.putFile(file);
     if (progress != null) {

@@ -4,10 +4,11 @@ version: 0.0.2
 homepage: https://github.com/thruthesky/model_house
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
+  cached_network_image: ^3.3.1
   cloud_firestore: 5.0.2
   cloud_functions: 5.0.2
   date_picker_v2: ^0.0.4
@@ -23,7 +24,7 @@ dependencies:
   flutter_image_compress: ^2.3.0
   image_picker: ^1.1.2
   memory_cache: ^1.2.0
-  rxdart: ^0.28.0
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:
