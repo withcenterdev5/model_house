@@ -21,7 +21,16 @@ class UserAvatar extends StatelessWidget {
     return UserDoc.sync(
       uid: uid,
       builder: (user) {
-        if (user!.photoUrl == null) return const SizedBox.shrink();
+        if (user!.photoUrl == null) {
+          return Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(radius),
+                border: border),
+          );
+        }
         return ClipRRect(
           borderRadius: BorderRadius.circular(radius),
           child: Container(

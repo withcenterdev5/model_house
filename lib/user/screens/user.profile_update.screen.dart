@@ -60,7 +60,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
             const Center(
               child: UserUpdateAvatar(
                 size: 140,
-                radius: 70,
+                radius: 75,
               ),
             ),
             LabelField(label: 'name'.t, controller: nameController),
