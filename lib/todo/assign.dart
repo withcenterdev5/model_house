@@ -33,15 +33,35 @@ class Assign {
     );
   }
 
+  /// Get an assign by its id
+  static Future<Assign?> get(String id) async {
+    final snapshot = await TodoService.instance.assignCol.doc(id).get();
+    if (snapshot.exists) {
+      return Assign.fromSnapshot(snapshot);
+    }
+    return null;
+  }
+
   /// Assign a task to a user
+  ///
+  /// This method creates a new assign document and updates the 'assignTo'
+  /// field of the task document.
+  ///
+  /// See the README.en.md for details.
   static Future<DocumentReference> create({
     required String uid,
     required String taskId,
   }) async {
-    return await TodoService.instance.assignCol.add({
+    final ref = await TodoService.instance.assignCol.add({
       'uid': uid,
       'taskId': taskId,
       'createdAt': FieldValue.serverTimestamp(),
     });
+
+    await TodoService.instance.taskCol.doc(taskId).update({
+      'assignTo': FieldValue.arrayUnion([uid]),
+    });
+
+    return ref;
   }
 }

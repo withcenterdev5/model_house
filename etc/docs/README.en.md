@@ -202,6 +202,13 @@ task7 {
 
 
 
+## Todo database
 
+### Todo-Task collection
+
+- `uid` is the creator.
+- `assignedTo` is a list of uids that the task was aissgend to. This will help on getting the user list of the task.
+
+- `updatedAt` is updated when there is any changes on the task itself. Not the chagnes of other entitles like asignees.
 
 

@@ -19,7 +19,9 @@ void testTaskAssign() async {
 
   final task = await createTask();
   final createdRef = await Assign.create(taskId: task.id, uid: my!.uid);
-
+  final createdAssign = await Assign.get(createdRef.id) as Assign;
+  isTrue(createdAssign.taskId == task.id, 'Task id is not correct');
+  isTrue(createdAssign.uid == my!.uid, 'User id is not correct');
   testReport();
 }
 
