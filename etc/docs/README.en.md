@@ -125,7 +125,7 @@ expect('apple'.tr(args: {'name': 'J', 'n': n}, form: n), 'J has 3 apples.');
   - When the creator creates a task, there will be only 1 copy of the task under `/todo-task`.
 
 - The creator can assign the task to other user.
-  - The list of assigns will be saved under `/todo-task/task-assign` subcollection.
+  - The list of assigns will be saved under `/todo-task-assign` subcollection.
 
 - The relation of creator and assignee is N:M.
 

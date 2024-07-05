@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_house/house_test/house_test_helper.functions.dart';
+import 'package:model_house/house_test/unit_tests/todo/todo.unit_test.dart';
 import 'package:model_house/model_house.dart';
 
 class HouseTestScreen extends StatefulWidget {
@@ -31,23 +31,17 @@ class _HouseTestScreenState extends State<HouseTestScreen> {
                     },
                     child: const Text('User Model Test'),
                   ),
-                  ElevatedButton(
-                    onPressed: testTaskCreate,
-                    child: const Text('Task Create Test'),
+                  const ElevatedButton(
+                    onPressed: testTaskCrud,
+                    child: Text('Task CRUD Test'),
+                  ),
+                  const ElevatedButton(
+                    onPressed: testTaskAssign,
+                    child: Text('Task Assign Test'),
                   ),
                 ],
               ),
       ),
     );
-  }
-
-  void testTaskCreate() async {
-    testStart('Task Create Test');
-
-    final created = await Task.create(title: 'fisrt task');
-
-    isTrue(created.title == 'fisrt task', 'title is not correct');
-
-    testReport();
   }
 }
