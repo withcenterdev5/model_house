@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:model_house/todo/task.service.dart';
 
 /// To-do entity class
 ///
@@ -7,27 +8,52 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 /// served by [TaskService].
 ///
 class Task {
-  final CollectionReference col =
-      FirebaseFirestore.instance.collection('todo-tasks');
+  final CollectionReference col = TaskService.instance.col;
 
-  String? title;
-  bool completed;
+  String id;
+  String title;
+  String? content;
+  DateTime createdAt;
 
   Task({
-    this.title,
-    this.completed = false,
+    required this.id,
+    required this.title,
+    this.content,
+    required this.createdAt,
   });
 
-  Task.fromJson(Map<String, dynamic> json)
-      : title = json['title'],
-        completed = json['completed'];
+  factory Task.fromSnapshot(DocumentSnapshot<Object?> snapshot) {
+    return Task.fromJson(snapshot.data() as Map<String, dynamic>, snapshot.id);
+  }
 
-  Map<String, dynamic> toJson() => {
-        'title': title,
-        'completed': completed,
-      };
+  factory Task.fromJson(Map<String, dynamic> json, String id) {
+    return Task(
+      id: id,
+      title: json['title'],
+      content: json['content'],
+      createdAt: (json['createdAt'] as Timestamp).toDate(),
+    );
+  }
 
-  create() {}
+  static Future<Task?> get(String id) async {
+    final snapshot = await TaskService.instance.col.doc(id).get();
+    if (snapshot.exists) {
+      return Task.fromSnapshot(snapshot);
+    }
+    return null;
+  }
+
+  static Future<Task> create({
+    required String title,
+    String? content,
+  }) async {
+    final createdRef = await TaskService.instance.col.add({
+      'title': title,
+      if (content != null) 'content': content,
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+    return (await get(createdRef.id))!;
+  }
 
   update() {}
 

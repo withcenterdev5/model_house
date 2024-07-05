@@ -15,6 +15,11 @@ export './translation/translation.service.dart';
 export './translation/translation.texts.dart';
 
 export './user/screens/user.profile_update.screen.dart';
+
+export './todo/task.dart';
+export './todo/task.service.dart';
+export './todo/widgets/task.list_view.dart';
+
 export './user/user.dart';
 export './user/user.defines.dart';
 export './user/user.service.dart';
