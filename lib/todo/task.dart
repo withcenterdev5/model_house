@@ -80,6 +80,8 @@ class Task {
     if (title != null) data['title'] = title;
     if (content != null) data['content'] = content;
 
+    // data['startAt'] = FieldValue.delete();
+
     await ref.update(data);
   }
 
