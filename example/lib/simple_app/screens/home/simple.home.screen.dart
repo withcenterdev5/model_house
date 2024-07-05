@@ -72,12 +72,31 @@ class _SimpleHomeScreenState extends State<SimpleHomeScreen> {
             child: const Text('Resign'),
           ),
           ElevatedButton(
+            onPressed: () async {
+              final photoUrl = await StorageService.instance.uploadAt(
+                context: context,
+                ref: UserService.instance.col.doc(my!.uid),
+              );
+              dog('$photoUrl');
+            },
+            child: const Text('Upload'),
+          ),
+          ElevatedButton(
             onPressed: () {
               i.signOut();
-              context.push(SimpleSignInScreen.routeName);
+              context.go(SimpleSignInScreen.routeName);
             },
             child: const Text('Logout'),
           ),
+
+          // UserDoc(
+          //     uid: my!.uid,
+          //     builder: (user) {
+          //       if (user!.photoUrl == null) return const SizedBox();
+          //       return CircleAvatar(
+          //         backgroundImage: NetworkImage(user.photoUrl!),
+          //       );
+          //     })
         ],
       ),
     );

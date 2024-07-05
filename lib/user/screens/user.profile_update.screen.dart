@@ -1,6 +1,7 @@
 import 'package:date_picker_v2/date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
+import 'package:model_house/user/widgets/user.update_avatar.dart';
 
 // there might some scenario that the user want to Use a unique name to display
 // but still we want to keep the user real name for example in github they using
@@ -56,6 +57,12 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Center(
+              child: UserUpdateAvatar(
+                size: 140,
+                radius: 70,
+              ),
+            ),
             LabelField(label: 'name'.t, controller: nameController),
             LabelField(
                 label: 'displayName'.t, controller: displayNameController),

@@ -12,8 +12,7 @@ class UserPublicProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const CircleAvatar(
             child: SizedBox(
@@ -21,6 +20,7 @@ class UserPublicProfileScreen extends StatelessWidget {
             ),
           ),
           Text(user.displayName),
+          Text('(${user.name})'),
         ],
       ),
     );

@@ -10,6 +10,8 @@ export './functions/log.functions.dart';
 
 export './house_test/widgets/house_test.screen.dart';
 
+export './storage/storage.service.dart';
+
 export './translation/translation.extensions.dart';
 export './translation/translation.service.dart';
 export './translation/translation.texts.dart';
