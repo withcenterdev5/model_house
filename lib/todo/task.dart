@@ -55,15 +55,11 @@ class Task {
 
   static Future<Task?> get(String id) async {
     final snapshot = await TodoService.instance.taskCol.doc(id).get();
-    if (snapshot.exists) {
-      return Task.fromSnapshot(snapshot);
-    }
-    return null;
+    if (!snapshot.exists) return null;
+    return Task.fromSnapshot(snapshot);
   }
 
   /// Create a task
-  ///
-  ///
   static Future<DocumentReference> create({
     required String title,
     String? content,
@@ -78,7 +74,7 @@ class Task {
 
   /// Update task
   ///
-  ///
+  /// NOTE: This cannot be used to nullify any field.
   Future<void> update({
     String? title,
     String? content,
@@ -94,15 +90,18 @@ class Task {
 
   /// Delete task including all the related assigns and data.
   Future<void> delete() async {
-    ///
-    await ref.delete();
-
-    ///
     final assigns = await TodoService.instance.assignCol
         .where('taskId', isEqualTo: id)
         .get();
-    for (final assign in assigns.docs) {
-      await assign.reference.delete();
-    }
+
+    // Delete the assigns under the task first
+    final assignDeleteFutures =
+        assigns.docs.map((assign) => assign.reference.delete());
+
+    // Await for all the assign delete futures
+    await Future.wait(assignDeleteFutures);
+
+    // Delete the task if all the assigns are deleted
+    await ref.delete();
   }
 }

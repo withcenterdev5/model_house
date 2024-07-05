@@ -5,6 +5,10 @@ class AssignStatus {
   static const waiting = 'waiting';
   static const progress = 'progress';
   static const finished = 'finished';
+  static const review = 'review';
+  static const closed = 'closed';
+
+  AssignStatus._();
 }
 
 class Assign {
@@ -48,10 +52,8 @@ class Assign {
   /// Get an assign by its id
   static Future<Assign?> get(String id) async {
     final snapshot = await TodoService.instance.assignCol.doc(id).get();
-    if (snapshot.exists) {
-      return Assign.fromSnapshot(snapshot);
-    }
-    return null;
+    if (!snapshot.exists) return null;
+    return Assign.fromSnapshot(snapshot);
   }
 
   /// Assign a task to a user

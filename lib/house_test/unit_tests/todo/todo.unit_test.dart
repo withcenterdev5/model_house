@@ -117,22 +117,92 @@ Future testTaskDeleteComplicated() async {
 }
 
 Future testTaskStatus() async {
-  final a = await loginAsA();
-  final b = await loginAsB();
+  // uidB is the Assignee of the task
+  final uidB = await loginAsB();
 
-  final task = await createTask();
-  final assignCreatedRef = Assign.create(uid: a.uid, taskId: task.id) as Assign;
-
-  final assign = await Assign.get(assignCreatedRef.id) as Assign;
-  await assign.changeStatus(AssignStatus.progress);
-
-  final updatedAssign = await Assign.get(task.id) as Assign;
-  isTrue(updatedAssign.status == AssignStatus.progress,
-      'Expect: success on task status change.');
-
+  // uidA is Creator of the task
   await loginAsA();
-  await assign.changeStatus(AssignStatus.finished);
-  final updatedAssign2 = await Assign.get(task.id) as Assign;
-  isTrue(updatedAssign2.status == AssignStatus.finished,
+
+  // uidA created a task and assigned it to uidB
+  final task = await createTask();
+  final createdAssignRef = await Assign.create(uid: uidB, taskId: task.id);
+  final createdAssign = await Assign.get(createdAssignRef.id);
+
+  isTrue(createdAssign!.status == AssignStatus.waiting,
+      'Expect: Assign status must be waiting.');
+
+  // uidB change the status to progress
+  await loginAsB();
+  await createdAssign.changeStatus(AssignStatus.progress);
+  final updatedAssignToProgress = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToProgress!.status == AssignStatus.progress,
+      'Expect: Success on task status change. Must be `progress`.');
+
+  // uidA change the status to finished
+  await loginAsA();
+  await createdAssign.changeStatus(AssignStatus.finished);
+  final updatedAssignToFinished = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToFinished!.status == AssignStatus.finished,
+      'Expect: success on task status change. Must be `finished`.');
+}
+
+/// Additional steps
+///
+/// Simulates the normal flow of assignments
+Future testTaskFlow() async {
+  // uidB is the Assignee of the task
+  final uidB = await loginAsB();
+
+  // uidA is Creator of the task
+  await loginAsA();
+
+  // uidA created a task and assigned it to uidB
+  final task = await createTask();
+  final createdAssignRef = await Assign.create(uid: uidB, taskId: task.id);
+  final createdAssign = await Assign.get(createdAssignRef.id);
+
+  isTrue(createdAssign!.status == AssignStatus.waiting,
+      'Expect: Assign status must be waiting.');
+
+  // uidB change the status to progress
+  await loginAsB();
+  await createdAssign.changeStatus(AssignStatus.progress);
+  final updatedAssignToProgress = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToProgress!.status == AssignStatus.progress,
+      'Expect: Success on task status change. Must be `progress`.');
+
+  // uidB tried to do the task. uidB change the status to review
+  await loginAsB();
+  await createdAssign.changeStatus(AssignStatus.progress);
+  final updatedAssignToReview = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToReview!.status == AssignStatus.review,
+      'Expect: Success on task status change. Must be `review`.');
+
+  // uidA rejected. Therefore, uidA set status to waiting
+  await loginAsA();
+  await createdAssign.changeStatus(AssignStatus.waiting);
+  final updatedAssignRejected = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignRejected!.status == AssignStatus.waiting,
+      'Expect: success on task status change. Must be `waiting`.');
+
+  // uidB received the task as waiting again. Therefore, uidB can change the status to progress.
+  await loginAsB();
+  await createdAssign.changeStatus(AssignStatus.progress);
+  final updatedAssignToProgress2 = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToProgress2!.status == AssignStatus.progress,
+      'Expect: Success on task status change. Must be `progress`.');
+
+  // uid be addded enhancement to task. Therefore, uidB change the status to review
+  await loginAsB();
+  await createdAssign.changeStatus(AssignStatus.progress);
+  final updatedAssignToReview2 = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToReview2!.status == AssignStatus.review,
+      'Expect: Success on task status change. Must be `review`.');
+
+  // uidA accepted. Therefore, uidA change the status to finished
+  await loginAsA();
+  await createdAssign.changeStatus(AssignStatus.finished);
+  final updatedAssignToFinished = await Assign.get(createdAssignRef.id);
+  isTrue(updatedAssignToFinished!.status == AssignStatus.finished,
       'Expect: success on task status change.');
 }
