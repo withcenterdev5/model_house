@@ -2,8 +2,7 @@ import 'package:example/widget_app/screens/user/user.widget.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:model_house/model_house.dart';
-import 'package:model_house/user/widgets/user.avatar.dart';
-import 'package:model_house/user/widgets/user.list_view.dart';
+import 'package:social_design_system/social_design_system.dart';
 
 class WidgetHomeScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -51,12 +50,21 @@ class _UserHomeScreenState extends State<WidgetHomeScreen> {
           ),
           const Divider(),
           ElevatedButton(
-              onPressed: () => showGeneralDialog(
-                    context: context,
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const UserWidgetScreen(),
-                  ),
-              child: const Text('User')),
+            onPressed: () => showGeneralDialog(
+              context: context,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const UserWidgetScreen(),
+            ),
+            child: const Text('User'),
+          ),
+          ElevatedButton(
+            onPressed: () => showGeneralDialog(
+              context: context,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const CurrentThemeScreen(),
+            ),
+            child: const Text('Theme and Color'),
+          ),
         ],
       ),
     );

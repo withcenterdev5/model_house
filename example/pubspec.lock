@@ -677,6 +677,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  loop_page_view:
+    dependency: transitive
+    description:
+      name: loop_page_view
+      sha256: ed0059c44e29fbdaf1f865cb4511820e6a0e29996a386e05c80d086ce0cf1a00
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.5"
   matcher:
     dependency: transitive
     description:
@@ -881,6 +889,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smooth_page_indicator:
+    dependency: transitive
+    description:
+      name: smooth_page_indicator
+      sha256: "725bc638d5e79df0c84658e1291449996943f93bacbc2cec49963dbbab48d8ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  social_design_system:
+    dependency: "direct main"
+    description:
+      name: social_design_system
+      sha256: ff3d9f54c843ff155a689faff8a60880347256f05e017de17ed0b99b605055d4
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.19"
   source_map_stack_trace:
     dependency: transitive
     description:

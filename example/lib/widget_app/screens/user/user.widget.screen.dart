@@ -14,24 +14,30 @@ class _UserWidgetScreenState extends State<UserWidgetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('UserSignIn'),
+        title: const Text('User related widgets'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          UserAvatar(user: my!),
-          SizedBox(
-            height: 72,
-            child: UserListView(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (user, index) => Padding(
-                padding: EdgeInsets.fromLTRB(index == 0 ? 24 : 8, 8, 8, 8),
-                child: SizedBox(
-                  width: 72 - 16,
-                  child: UserAvatar(user: user),
-                ),
-              ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 8, 0, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('UserAvatar; border, radus, size'),
+                UserAvatar(user: my!),
+              ],
             ),
           ),
+          const SizedBox(height: 16),
+          const Text('UserListView'),
+          Container(
+            height: 200,
+            color: Colors.grey.shade300,
+            child: const UserListView(),
+          ),
+          const Text('UserPhotoListView'),
+          const UserPhotoListView(),
         ],
       ),
     );

@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:model_house/model_house.dart';
 
 class DisplayName extends StatelessWidget {
-  const DisplayName({super.key, this.uid, this.initialData});
+  const DisplayName({
+    super.key,
+    required this.user,
+    this.maxLines = 1,
+    this.overflow,
+    this.length = 6,
+  });
 
-  final String? uid;
-  final String? initialData;
+  final User user;
+  final int maxLines;
+  final TextOverflow? overflow;
+  final int length;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      initialData ?? 'Anonymous',
+      user.displayName.cut(length),
+      maxLines: maxLines,
+      overflow: overflow,
+      style: Theme.of(context).textTheme.labelMedium,
     );
   }
 }
