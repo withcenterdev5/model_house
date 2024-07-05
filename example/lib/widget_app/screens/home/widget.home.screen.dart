@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:model_house/model_house.dart';
 import 'package:social_design_system/social_design_system.dart';
 
+/// WidgetHomeScreen
+///
 class WidgetHomeScreen extends StatefulWidget {
   static const String routeName = '/';
   const WidgetHomeScreen({super.key});

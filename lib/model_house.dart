@@ -32,7 +32,7 @@ export './user/widgets/auth_state.dart';
 export './user/widgets/user.avatar.dart';
 export './user/widgets/my_doc.dart';
 export './user/widgets/display_name.dart';
-export './user/widgets/horizontal_user.list_view.dart';
+export 'user/widgets/user.photo.list_view.dart';
 export './user/widgets/user.list_tile.dart';
 export './user/widgets/user.list_view.dart';
 
