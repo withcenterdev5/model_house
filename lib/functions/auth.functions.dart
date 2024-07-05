@@ -32,7 +32,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 /// ```
 ///
 /// Return the user object of firebase auth and whether the user is registered or not.
-Future loginOrRegister({
+Future<void> loginOrRegister({
   required String email,
   required String password,
   String? photoUrl,

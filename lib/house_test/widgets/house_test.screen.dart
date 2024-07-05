@@ -32,12 +32,8 @@ class _HouseTestScreenState extends State<HouseTestScreen> {
                     child: const Text('User Model Test'),
                   ),
                   const ElevatedButton(
-                    onPressed: testTaskCrud,
-                    child: Text('Task CRUD Test'),
-                  ),
-                  const ElevatedButton(
-                    onPressed: testTaskAssign,
-                    child: Text('Task Assign Test'),
+                    onPressed: testTodo,
+                    child: Text('Test on TODO'),
                   ),
                 ],
               ),
