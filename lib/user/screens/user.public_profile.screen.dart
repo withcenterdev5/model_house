@@ -20,7 +20,7 @@ class UserPublicProfileScreen extends StatelessWidget {
               child: Icon(Icons.person),
             ),
           ),
-          Text(user.displayName ?? ''),
+          Text(user.displayName),
         ],
       ),
     );

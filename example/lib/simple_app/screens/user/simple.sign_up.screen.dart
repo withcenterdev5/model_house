@@ -12,7 +12,14 @@ class SimpleSignUpScreen extends StatefulWidget {
 }
 
 class _SimpleSignUpScreenState extends State<SimpleSignUpScreen> {
-  final controller = TextEditingController();
+  final displayNameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +29,12 @@ class _SimpleSignUpScreenState extends State<SimpleSignUpScreen> {
       ),
       body: Column(
         children: [
-          LabelField(label: 'Display name', controller: controller),
+          LabelField(label: 'First name', controller: displayNameController),
+          LabelField(label: 'Last name', controller: firstNameController),
+          LabelField(label: 'Display name', controller: lastNameController),
           ElevatedButton(
               onPressed: () {
-                my?.update(displayName: controller.text);
+                my?.update(displayName: displayNameController.text);
                 context.go(SimpleHomeScreen.routeName);
               },
               child: const Text('Done'))

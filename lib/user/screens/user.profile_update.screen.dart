@@ -2,6 +2,9 @@ import 'package:date_picker_v2/date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
 
+// there might some scenario that the user want to Use a unique name to display
+// but still we want to keep the user real name for example in github they using
+// user name as display name but keeping thier real name ex: dev123 (John Smith)
 class UserProfileUpdateScreen extends StatefulWidget {
   static const String routeName = '/UserProfileUpdate';
   const UserProfileUpdateScreen({super.key});
@@ -13,6 +16,7 @@ class UserProfileUpdateScreen extends StatefulWidget {
 
 class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
   final displayNameController = TextEditingController();
+  final nameController = TextEditingController();
   String? gender;
   int? birthYear;
   int? birthMonth;
@@ -24,12 +28,21 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
     prepareData();
   }
 
+  // prepare data add more condition if needed
   void prepareData() {
     displayNameController.text = my?.displayName ?? '';
+    nameController.text = my?.name ?? '';
     birthYear = my?.birthYear ?? DateTime.now().year;
     birthMonth = my?.birthMonth ?? DateTime.now().month;
     birthDay = my?.birthDay ?? DateTime.now().day;
     gender = my?.gender;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    displayNameController.dispose();
   }
 
   @override
@@ -43,6 +56,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            LabelField(label: 'name'.t, controller: nameController),
             LabelField(
                 label: 'displayName'.t, controller: displayNameController),
             const SizedBox(height: 24),
@@ -90,7 +104,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
               endYear: DateTime.now().year,
               beginYear: DateTime.now().year - 100,
               ascendingYear: false,
-              // initialDate: (year: birthYear, month: birthMonth, day: birthDay),
+              initialDate: (year: birthYear, month: birthMonth, day: birthDay),
               onChanged: (year, month, day) {
                 birthYear = year;
                 birthMonth = month;
@@ -106,6 +120,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   my?.update(
+                    name: nameController.text,
                     displayName: displayNameController.text,
                     birthYear: birthYear,
                     birthMonth: birthMonth,

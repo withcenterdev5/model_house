@@ -153,6 +153,7 @@ class User {
 
   Future update({
     String? displayName,
+    String? name,
     int? birthYear,
     int? birthMonth,
     int? birthDay,
@@ -162,10 +163,11 @@ class User {
       {
         'updatedAt': FieldValue.serverTimestamp(),
         if (displayName != null) 'displayName': displayName,
-        'birthYear': birthYear,
-        'birthMonth': birthMonth,
-        'birthDay': birthDay,
-        'gender': gender
+        if (name != null) 'name': name,
+        if (birthYear != null) 'birthYear': birthYear,
+        if (birthMonth != null) 'birthMonth': birthMonth,
+        if (birthDay != null) 'birthDay': birthDay,
+        if (gender != null) 'gender': gender
       },
       SetOptions(merge: true),
     );
