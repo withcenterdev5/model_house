@@ -15,18 +15,16 @@ class Task {
 
   String id;
   String title;
-  String content;
+  String? content;
   DateTime createdAt;
   DateTime updatedAt;
-  List<String> assignTo = [];
 
   Task({
     required this.id,
     required this.title,
-    this.content = '',
+    this.content,
     required this.createdAt,
     required this.updatedAt,
-    this.assignTo = const [],
   });
 
   factory Task.fromSnapshot(DocumentSnapshot<Object?> snapshot) {
@@ -39,10 +37,9 @@ class Task {
     return Task(
       id: id,
       title: json['title'],
-      content: json['content'] ?? '',
+      content: json['content'],
       createdAt: createdAt == null ? DateTime.now() : createdAt.toDate(),
       updatedAt: updatedAt == null ? DateTime.now() : updatedAt.toDate(),
-      assignTo: List<String>.from(json['assignTo'] ?? []),
     );
   }
 
@@ -61,9 +58,6 @@ class Task {
     return null;
   }
 
-  /// Create a task
-  ///
-  ///
   static Future<DocumentReference> create({
     required String title,
     String? content,
@@ -76,9 +70,6 @@ class Task {
     });
   }
 
-  /// Update task
-  ///
-  ///
   Future<void> update({
     String? title,
     String? content,
@@ -92,17 +83,5 @@ class Task {
     await ref.update(data);
   }
 
-  /// Delete task including all the related assigns and data.
-  Future<void> delete() async {
-    ///
-    await ref.delete();
-
-    ///
-    final assigns = await TodoService.instance.assignCol
-        .where('taskId', isEqualTo: id)
-        .get();
-    for (final assign in assigns.docs) {
-      await assign.reference.delete();
-    }
-  }
+  delete() {}
 }

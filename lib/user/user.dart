@@ -16,7 +16,11 @@ class User {
   /// 처음 회원 가입을 하고, 최초 데이터를 업데이트(저장)하는 동안에는 createdAt 이 null 이 될 수 있다.
   DateTime? createdAt;
   DateTime? updatedAt;
+  int? birthYear;
+  int? birthMonth;
+  int? birthDay;
   DateTime? lastLoginAt;
+  String? photoUrl;
 
   /// Collection reference of the user's collection.
   ///
@@ -30,7 +34,11 @@ class User {
     this.gender,
     this.createdAt,
     this.updatedAt,
+    this.birthYear,
+    this.birthMonth,
+    this.birthDay,
     this.lastLoginAt,
+    this.photoUrl,
   });
 
   /// Create a user with the given [uid].
@@ -81,6 +89,10 @@ class User {
       lastLoginAt: json['lastLoginAt'] is Timestamp
           ? (json['lastLoginAt'] as Timestamp).toDate()
           : null,
+      birthYear: json['birthYear'],
+      birthMonth: json['birthMonth'],
+      birthDay: json['birthDay'],
+      photoUrl: json['photoUrl'],
     );
   }
 
@@ -91,7 +103,11 @@ class User {
     data['gender'] = gender;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;
+    data['birthYear'] = birthYear;
+    data['birthMonth'] = birthMonth;
+    data['birthDay'] = birthDay;
     data['lastLoginAt'] = lastLoginAt;
+    data['photoUrl'] = photoUrl;
     return data;
   }
 
@@ -141,11 +157,23 @@ class User {
 
   Future update({
     String? displayName,
+    String? name,
+    int? birthYear,
+    int? birthMonth,
+    int? birthDay,
+    String? gender,
+    String? photoUrl,
   }) async {
     await doc.set(
       {
         'updatedAt': FieldValue.serverTimestamp(),
         if (displayName != null) 'displayName': displayName,
+        if (name != null) 'name': name,
+        if (birthYear != null) 'birthYear': birthYear,
+        if (birthMonth != null) 'birthMonth': birthMonth,
+        if (birthDay != null) 'birthDay': birthDay,
+        if (gender != null) 'gender': gender,
+        if (photoUrl != null) 'photoUrl': photoUrl,
       },
       SetOptions(merge: true),
     );
