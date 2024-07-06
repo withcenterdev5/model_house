@@ -16,4 +16,15 @@ class AdminService {
       my!.uid: ['root'],
     });
   }
+
+  /// Get all admins in /settings/admins document.
+  Future<Map<String, List<String>>?> getAdmins() async {
+    final snapshot = await adminDoc.get();
+    if (snapshot.exists) {
+      final data = snapshot.data() as Map;
+      return data.map((key, value) =>
+          MapEntry(key as String, List<String>.from(value as List)));
+    }
+    return null;
+  }
 }
