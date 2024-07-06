@@ -1,12 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:model_house/model_house.dart';
 
+/// AdminService
+///
+///
 class AdminService {
   static AdminService? _instance;
   static AdminService get instance => _instance ??= AdminService();
 
   DocumentReference get adminDoc =>
       FirebaseFirestore.instance.collection('settings').doc('admins');
+
+  /// Initialize the AdminService
+  init() {
+    /// 관리자 목록 문서 구독
+    ///
+    /// 앱 시작시 한번 구독하면, 앱 종료할 때까지 필요하므로, 해제를 할 필요가 없다.
+    adminDoc.snapshots().listen((event) {
+      print('--- AdminService: ${event.data()}');
+    });
+  }
 
   /// Claim the login user as root admin.
   ///
@@ -18,6 +31,7 @@ class AdminService {
   }
 
   /// Get all admins in /settings/admins document.
+  ///
   Future<Map<String, List<String>>?> getAdmins() async {
     final snapshot = await adminDoc.get();
     if (snapshot.exists) {

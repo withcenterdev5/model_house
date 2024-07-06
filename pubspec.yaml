@@ -1,6 +1,6 @@
 name: model_house
 description: "UI Library for Flutter and Firebase to build app quickly"
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/thruthesky/model_house
 
 environment:
