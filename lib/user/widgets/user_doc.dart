@@ -7,6 +7,9 @@ import 'package:model_house/model_house.dart';
 ///
 /// 다른 사용자의 정보를 한번만 읽어서 전달한다.
 ///
+/// [uid] 는 사용자 uid 이다. 메모리에 캐시된 데이터를 사용하기 때문에 굳이 User model object
+/// 를 통째로 받지 않는다.
+///
 /// 세가지 다른 모드가 있다.
 ///
 /// [cacheOnly] 가 true 이면, 메모리에 캐시된 데이터만 사용한다. 메모리 캐시된 데이터가 있으면

@@ -1,3 +1,4 @@
+import 'package:example/widget_app/screens/admin/admin.wdiget.screen.dart';
 import 'package:example/widget_app/screens/user/user.widget.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -58,6 +59,14 @@ class _UserHomeScreenState extends State<WidgetHomeScreen> {
                   const UserWidgetScreen(),
             ),
             child: const Text('User'),
+          ),
+          ElevatedButton(
+            onPressed: () => showGeneralDialog(
+              context: context,
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const AdminWidgetScreen(),
+            ),
+            child: const Text('Admin'),
           ),
           ElevatedButton(
             onPressed: () => showGeneralDialog(
