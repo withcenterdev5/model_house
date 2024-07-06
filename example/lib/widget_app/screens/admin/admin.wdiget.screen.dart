@@ -16,16 +16,20 @@ class _AdminWidgetScreenState extends State<AdminWidgetScreen> {
       appBar: AppBar(
         title: const Text('AdminWidget'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(24),
+      body: Padding(
+        padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            Text(
+            const Text(
               "In this screen, all the widgets that are related to the Admin will be displayed.",
             ),
-            Divider(),
-            Text('AdminClaimButton; To claim myself as a root admin!'),
-            AdminClaimButton(),
+            const Divider(),
+            const Text('AdminClaimButton; To claim myself as a root admin!'),
+            const AdminClaimButton(),
+            const Text('isAdmin'),
+            Admin(builder: (roles) {
+              return Text('isAdmin: $roles');
+            })
           ],
         ),
       ),

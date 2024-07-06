@@ -1,4 +1,5 @@
 export './admin/widgets/admin.claim.button.dart';
+export './admin/widgets/admin.dart';
 
 export './exception/error_code/chat.error_code.dart';
 export './exception/error_code.dart';
@@ -42,7 +43,7 @@ export './user/widgets/auth_state.dart';
 export './user/widgets/user.avatar.dart';
 export './user/widgets/my_doc.dart';
 export './user/widgets/display_name.dart';
-export 'user/widgets/user.photo.list_view.dart';
+export './user/widgets/user.photo.list_view.dart';
 export './user/widgets/user.list_tile.dart';
 export './user/widgets/user.list_view.dart';
 
