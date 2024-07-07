@@ -24,11 +24,9 @@ class _AdminWidgetScreenState extends State<AdminWidgetScreen> {
               "In this screen, all the widgets that are related to the Admin will be displayed.",
             ),
             const Divider(),
-            const Text('AdminClaimButton; To claim myself as a root admin!'),
-            const AdminClaimButton(),
-            const Text('isAdmin'),
-            Admin(builder: (roles) {
-              return Text('isAdmin: $roles');
+            const Text('Admin; to know if the user is admin or not.'),
+            Admin(builder: (isAdmin) {
+              return Text('Am i admin?: $isAdmin');
             })
           ],
         ),

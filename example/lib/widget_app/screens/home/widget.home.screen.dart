@@ -43,7 +43,8 @@ class _UserHomeScreenState extends State<WidgetHomeScreen> {
           MyDoc(
             builder: (user) => user == null
                 ? const SizedBox.shrink()
-                : Text('Welcome, ${user.displayName}, ${user.lastLoginAt}'),
+                : Text(
+                    'Welcome, ${user.displayName}, ${user.lastLoginAt}, UID: ${user.uid}'),
           ),
           ElevatedButton(
             onPressed: () {

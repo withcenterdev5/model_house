@@ -9,6 +9,10 @@ import 'package:model_house/model_house.dart';
 /// [private] is the private field that will be used to store the user's data.
 class User {
   String uid;
+
+  /// If the user is an admin, it will be true. If not, it will be false.
+  final bool admin;
+
   String displayName;
   String name;
   String? gender;
@@ -29,6 +33,7 @@ class User {
 
   User({
     required this.uid,
+    this.admin = false,
     this.displayName = '',
     this.name = '',
     this.gender,
@@ -77,6 +82,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json, String uid) {
     return User(
       uid: uid,
+      admin: json['admin'] ?? false,
       displayName: json['displayName'] ?? '',
       name: json['name'] ?? '',
       gender: json['gender'],
@@ -98,6 +104,8 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['uid'] = uid;
+    data['admin'] = admin;
     data['displayName'] = displayName;
     data['name'] = name;
     data['gender'] = gender;
