@@ -41,42 +41,23 @@ AdminService.instance.claimAsRoot();
 
 ## 관리자 권한
 
-관리자는 `/settings/admins` 문서에 둔다.
-
-이 문서의 각 필드는 관리자의 UID 이며, 필드 값은 문자열 배열로 관리자 권한을 추가한다.
-
-관리자 권한에는 `root`, `customer-chat-support` 등이 있다.
-
-`root` 는 모든 권한을 가진 관리자로서 다른 사용자를 관리자로 임명 할 수 있다. `root` 권한을 가진 관리자가 다른 관리자에게 여러가지 권한을 줄 수 있으며,`root` 권한까지도 줄 수 있다. 즉, `root` 관리자가 여러명 있을 수 있다.
-
-`customer-chat-support` 은 고객 상담을 하는 관리자이다. 여러명의 관리자가 이 권한을 가질 수 있으며, 고객(회원)이 관리자에게 질문(채팅)을 하면, 이 권한을 가진 관리자가 모두 채팅방에 들어가서 채팅이 진행된다. 즉, 고객 상담은 그룹 챗으로 진행이 되며, 다른 사용자를 초대 할 수 있다.
-
-관리자에 특별한 권한 설정 없는 사용자는 `/settings/admins { 'xxx': [""] }` 와 같이 첫번째 항목에 빈 문자열로 저장한다.
-
-사용자 차단, 글, 코멘트 등의 임시 조치는 모든 관리자가 다 할 수 있도록 한다.
+참고: Firestore Security Rules 에 대해 자세한 설명은 [하우스 엔진 - Firestore Security Rules](https://github.com/thruthesky/hengine?tab=readme-ov-file#firebase-security-rules) 항목을 참고한다.
 
 
 
 ## 관리자 인지 확인하기
 
-- 관리자인지 아닌지는 `AdminService.instance.isAdmin` 으로 확인을 할 수 있으며,
+- 본인이 관리자인지 아닌지는 `im.admin` 으로 확인을 할 수 있으며,
 
-- DB 가 변경될 때 또는 사용자 UID 가 변경 될 때, StreamBuilder 로 실시간 업데이트를 하고자 하는 경우 아래와 같이 할 수 있다.
+- DB 가 변경되어 로그인한 사용자가 갑자기 관리자로 임명된다고 해도, Stream 으로 실시간으로 변하지 않도록 한다. 왜냐하면 관리자 지정 또는 변경이 극히 드물게 변경하므로, 굳이 실시간 변경까지는 할 필요 없다.
 
 ```dart
-StreamBuilder(
-  stream: AdminService.instance.isAdminStream,
-  builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return const SizedBox();
-    }
-
-    if (snapshot.data != true) return const SizedBox();
-
-    return Text('You are an admin');
-  }
-);
+/// 여기서 부터...
 ```
+
+
+
+--- 여기서 부터 다시 업데이트 ----
 
 ## 관리자와 채팅하기
 
