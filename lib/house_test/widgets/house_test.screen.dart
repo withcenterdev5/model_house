@@ -39,6 +39,14 @@ class _HouseTestScreenState extends State<HouseTestScreen> {
                     onPressed: testTaskAssign,
                     child: Text('Task Assign Test'),
                   ),
+                  const ElevatedButton(
+                    onPressed: testDeleteField,
+                    child: Text('Task Delete Field Test'),
+                  ),
+                  const ElevatedButton(
+                    onPressed: testCreateWithPriority,
+                    child: Text('Task Create With Priority Test'),
+                  ),
                 ],
               ),
       ),
