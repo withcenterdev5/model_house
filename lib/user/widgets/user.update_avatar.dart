@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
-import 'package:model_house/user/widgets/user.avatar.dart';
 
 /// UserAvatarUpdate
 ///

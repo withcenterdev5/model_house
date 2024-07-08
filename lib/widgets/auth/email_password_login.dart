@@ -84,7 +84,6 @@ class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
                   email: emailController.text,
                   password: passwordController.text,
                 );
-                dog('$re');
                 if (widget.onRegister != null) {
                   if (re.register) {
                     widget.onRegister?.call();

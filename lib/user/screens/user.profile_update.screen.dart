@@ -61,6 +61,7 @@ class _UserProfileUpdateScreenState extends State<UserProfileUpdateScreen> {
               child: UserUpdateAvatar(
                 size: 140,
                 radius: 75,
+                delete: true,
               ),
             ),
             LabelField(label: 'name'.t, controller: nameController),
