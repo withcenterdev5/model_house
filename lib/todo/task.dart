@@ -22,6 +22,16 @@ class Task {
   DateTime? startAt;
   DateTime? endAt;
 
+  /// [priority] is used to weigh the importance of the task.
+  ///
+  /// The scaling of priority is perferrably from 1 to 5.
+  /// 1 = Not a Prioity
+  /// 2 = Low Priority
+  /// 3 = Normal Priority
+  /// 4 = High Priority
+  /// 5 = Urgent/Immediate
+  int priority;
+
   Task({
     required this.id,
     required this.title,
@@ -31,6 +41,7 @@ class Task {
     this.startAt,
     this.endAt,
     this.assignTo = const [],
+    this.priority = 3,
   });
 
   factory Task.fromSnapshot(DocumentSnapshot<Object?> snapshot) {
@@ -52,6 +63,7 @@ class Task {
       startAt: startAt?.toDate(),
       endAt: endAt?.toDate(),
       assignTo: List<String>.from(json['assignTo'] ?? []),
+      priority: json['priority'] ?? 3,
     );
   }
 
@@ -61,7 +73,6 @@ class Task {
   /// ```dart
   /// return (await get(createdRef.id))!;
   /// ```
-
   static Future<Task?> get(String id) async {
     final snapshot = await TodoService.instance.taskCol.doc(id).get();
     if (!snapshot.exists) return null;
@@ -72,18 +83,27 @@ class Task {
   static Future<DocumentReference> create({
     required String title,
     String? content,
+    DateTime? startAt,
+    DateTime? endAt,
+    List<String>? assignTo,
+    int? priority,
   }) async {
     return await TodoService.instance.taskCol.add({
       'title': title,
       if (content != null) 'content': content,
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
+      if (startAt != null) 'startAt': Timestamp.fromDate(startAt),
+      if (endAt != null) 'endAt': Timestamp.fromDate(endAt),
+      if (assignTo != null) 'assignTo': assignTo,
+      if (priority != null) 'priority': priority,
     });
   }
 
   /// Update task
   ///
-  /// NOTE: This cannot be used to nullify any field.
+  /// NOTE: This cannot be used to `nullify` any field. Use
+  /// [deleteField] method to delete a field.
   Future<void> update({
     String? title,
     String? content,
@@ -95,9 +115,17 @@ class Task {
     };
     if (title != null) data['title'] = title;
     if (content != null) data['content'] = content;
-    if (startAt != null) data['startAt'] = startAt;
-    if (endAt != null) data['endAt'] = endAt;
+    if (startAt != null) data['startAt'] = Timestamp.fromDate(startAt);
+    if (endAt != null) data['endAt'] = Timestamp.fromDate(endAt);
     await ref.update(data);
+  }
+
+  /// Delete a field to a doc of task
+  Future<void> deleteField(List<String> fields) async {
+    final deleteData = Map<String, dynamic>.fromEntries(
+      fields.map((field) => MapEntry(field, FieldValue.delete())),
+    );
+    await ref.update(deleteData);
   }
 
   /// Delete task including all the related assigns and data.

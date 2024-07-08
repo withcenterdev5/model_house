@@ -25,7 +25,7 @@ Model class does
 - encapsulating the refs.
 
 Service class does
-- something that are related with the model.
+- something that are related with the model(entity) or the service can handle for the whole function(feacher).
 - showing screens
 - search & listing data
 - initialization, listening, etc.
@@ -202,6 +202,28 @@ task7 {
 
 
 
+## Todo database
 
+### Todo-Task collection
+
+- `uid` is the creator.
+- `assignedTo` is a list of uids that the task was aissgend to. This will help on getting the user list of the task.
+
+- `updatedAt` is updated when there is any changes on the task itself. Not the chagnes of other entitles like asignees.
+
+
+
+
+### Todo-assign collection
+
+- `status` is the status of the task.
+  - The `status` can be chagned by the creator or assignee.
+  - It can be one of;
+    - `waiting` - meaning, the task is created but no activity yet. the task is assigned and the aissgnee hasn't done anyting yet.
+    - `progress` - the task is in the middle of work.
+    - `finished` - The task is finished. The app should notify the moderators(creators)
+    - `review` - the work is in review. asking, the moderator to review it.
+    - `closed` - the moderator can only mark it as `closed`. If the task is in `closed` status, assignee cannot update(change) anyting including the status anymore.
+  - For example, The status can be changed at any time. Assignee can mark it as `review` and the moderator can mark it as `progress` soon after. But the moderator is the only one who can mark it as `closed` and once it is closed, it cannot be updated(changed).
 
 
