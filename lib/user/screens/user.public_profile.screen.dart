@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_house/user/user.dart';
+import 'package:model_house/model_house.dart';
 
 class UserPublicProfileScreen extends StatelessWidget {
   static const String routeName = '/UserPublicProfile';
@@ -11,17 +11,33 @@ class UserPublicProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const CircleAvatar(
-            child: SizedBox(
-              child: Icon(Icons.person),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const Spacer(),
+            UserAvatar(
+              user: user,
+              size: 100,
+              radius: 50,
             ),
-          ),
-          Text(user.displayName),
-          Text('(${user.name})'),
-        ],
+            Text(
+              user.displayName,
+            ),
+            Text(
+              user.name,
+            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Like',
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

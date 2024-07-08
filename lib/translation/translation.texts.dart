@@ -71,6 +71,14 @@ final translationTexts = {
     'en': 'User',
     'ko': '사용자',
   },
+  'Select photo from gallery': {
+    'en': 'Select photo from gallery',
+    'ko': '갤러리에서 사진 선택',
+  },
+  'Take photo from camera': {
+    'en': 'Take photo from camera',
+    'ko': '카메라에서 사진을 찍다',
+  },
   'there are {n} apple': {
     'en': {
       'zero': 'There is no apple',

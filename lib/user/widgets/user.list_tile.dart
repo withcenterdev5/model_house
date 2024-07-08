@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:model_house/model_house.dart';
+import 'package:model_house/user/screens/user.public_profile.screen.dart';
 
 class UserListTile extends StatelessWidget {
   const UserListTile({
@@ -21,7 +22,7 @@ class UserListTile extends StatelessWidget {
       ),
       onTap: () => showGeneralDialog(
           context: context,
-          pageBuilder: (_, __, ___) => const UserProfileUpdateScreen()),
+          pageBuilder: (_, __, ___) => UserPublicProfileScreen(user: user)),
     );
   }
 }
