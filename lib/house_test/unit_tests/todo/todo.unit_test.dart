@@ -27,6 +27,13 @@ void testTodo() async {
   await testReport();
 }
 
+void testTaskCrud() {
+  testStart('Task CRUD Test');
+  testTaskCreate();
+  testTaskUpdate();
+  testReport();
+}
+
 Future testTaskAssign() async {
   final task = await createTask();
   final createdRef = await Assign.create(taskId: task.id, uid: my!.uid);

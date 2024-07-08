@@ -2,38 +2,42 @@
 
 ## 개요
 
-- 관리자 기능은 누가 관리자인지 확인을 하거나, 관리자에게 채팅을 하거나 등에서 사용 할 수 있다.
-
-- 관리자 지정하기
-  - 선착순 1명이 먼저 root 관리자가 될 수 있다.
+- 관리자 기능은 사용자, 글, 코멘트, 사진 등등을 관리 할 수 있게 해 준다.
+ 
+- 참고로, 앞으로는 Firestore 콘솔을 열지 않고, 앱 내에서 선착순 1명이 루트 관리자가 되고, 루트 관리자가 다른 사용자를 관리자로 지정할 수 있도록 할 계획에 있다.
 
 ## 초기화
 
-- `AdminService.instance.init()` 을 호출하면 관리자 목록을 RTDB 서버에서 가져와 관리(실시간 업데이트)를 한다.
-  - 즉, `AdminService.instance.init()` 을 호출하지 않으면, 관리자 정보가 앱으로 다운로드 되지 않고, 관리자 기능이 올바로 동작하지 않을 수 있다.
-  - 관리자 기능을 앱에서 사용하는 것은 옵션이지만, 사용을 해서, 관리 기능을 추가 해 주는 거이 좋다. 예를 들면, 관리자에게 채팅을 하기 위해서는 관리자 기능을 사용해야 한다.
+- 별다른 초기화가 필요없다.
+
+
+### 관리자로 지정하기
+
+- 파이어베이스 콘솔에서 Firestore 를 열어서, 관리자로 지정하고자 하는 사용자 문서의 admin 필드에 true 값을 주면 된다.
+- 관리자는 여러명 지정 할 수 있다. 원하는 사용자 마다, Firestore 콘솔에서 해당 사용자의 문서에 `admin` 필드 값으로 true 를 주면 된다.
+
+- 향후, 클라우드 함수를 통해서, 관리자가 지정된 사용자 없다면, 최초 1회 선착순 관리자로 지정을 할 수 있도록 한다.
+
+
+## 관리자 권한
+
+참고: Firestore Security Rules 에 대해 자세한 설명은 [하우스 엔진 - Firestore Security Rules](https://github.com/thruthesky/hengine?tab=readme-ov-file#firebase-security-rules) 항목을 참고한다.
+
 
 
 ## 관리자 인지 확인하기
 
-- 관리자인지 아닌지는 `AdminService.instance.isAdmin` 으로 확인을 할 수 있으며,
+- 본인이 관리자인지 아닌지는 `im.admin` 으로 확인을 할 수 있으며,
 
-- DB 가 변경될 때 또는 사용자 UID 가 변경 될 때, StreamBuilder 로 실시간 업데이트를 하고자 하는 경우 아래와 같이 할 수 있다.
+- DB 가 변경되어 로그인한 사용자가 갑자기 관리자로 임명된다고 해도, Stream 으로 실시간으로 변하지 않도록 한다. 왜냐하면 관리자 지정 또는 변경이 극히 드물게 변경하므로, 굳이 실시간 변경까지는 할 필요 없다.
 
 ```dart
-StreamBuilder(
-  stream: AdminService.instance.isAdminStream,
-  builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return const SizedBox();
-    }
-
-    if (snapshot.data != true) return const SizedBox();
-
-    return Text('You are an admin');
-  }
-);
+/// 여기서 부터...
 ```
+
+
+
+--- TODO 여기서 부터 관리자와 채팅하는 설명을 진행한다. ----
 
 ## 관리자와 채팅하기
 
@@ -75,3 +79,11 @@ chat.sendMessage(
 - `AdminService.instance.showDashboard()` 를 호출하면 FireFlutter 에서 제공하는 기본 관리자 화면이 나온다.
 
 
+
+
+## 관리자 관련 위젯
+
+
+내가 관리자인지 아닌지 알기 위해서는 `Admin` 위젯을 사용하면 된다.
+
+로직에서 관리자인지 알기 위해서는 `isAdmin`, `isRootAdmin` 등의 글로벌 변수를 사용하면 된다.

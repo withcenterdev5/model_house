@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:model_house/model_house.dart';
 

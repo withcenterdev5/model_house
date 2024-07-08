@@ -13,6 +13,14 @@
             "program": "lib/main.dart"
         },
         {
+            "name": "Elementary - iOS Simulator - iPhone11ProMax",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone11ProMax",
+            "cwd": "apps/elementary",
+            "program": "lib/main.dart"
+        },
+        {
             "name": "Simple - iOS Simulator - iPhone 15 Pro Max",
             "request": "launch",
             "type": "dart",
@@ -21,12 +29,20 @@
             "program": "lib/main.simple.dart"
         },
         {
-            "name": "User - iOS Simulator - iPhone 15 Pro Max",
+            "name": "All Widgets - iOS Simulator - iPhone 15 Pro Max",
             "request": "launch",
             "type": "dart",
             "deviceId": "iPhone 15 Pro Max",
             "cwd": "example",
-            "program": "lib/main.user.dart"
+            "program": "lib/main.widgets.dart"
+        },
+        {
+            "name": "All Widgets - iOS Simulator - iPhone SE",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone SE",
+            "cwd": "example",
+            "program": "lib/main.widgets.dart"
         },
         {
             "name": "TEST - iOS Simulator - iPhone 15 Pro Max",
@@ -67,6 +83,33 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
-        }
+        },
+        {
+            "name": "Elementary(Noe) - iOS Simulator - iPhone 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone 15 Pro Max",
+            "cwd": "apps/elementary",
+            "program": "lib/main.dart",
+            "args": ["--dart-define", "MODE=noe"]
+        },
+        {
+            "name": "Elementary(Noe) - iOS Simulator - iPhone SE (3rd generation)",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone SE (3rd generation)",
+            "cwd": "apps/elementary",
+            "program": "lib/main.dart",
+            "args": ["--dart-define", "MODE=noe"]
+        },
+        {
+            "name": "Model SimpleApp Example (Noe)- iOS Simulator - iPhone 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone 15 Pro Max",
+            "cwd": "example",
+            "program": "lib/main.simple.dart",
+            "args": ["--dart-define", "MODE=noe"]
+        },
     ]
 }

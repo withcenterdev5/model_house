@@ -1,15 +1,14 @@
 name: example
 description: "A new Flutter project."
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
-
   cloud_firestore: ^5.0.2
   cloud_functions: ^5.0.2
   cupertino_icons: ^1.0.6
@@ -23,6 +22,7 @@ dependencies:
   go_router: ^14.2.0
   model_house:
     path: ..
+  social_design_system: ^0.0.19
 
 dev_dependencies:
   flutter_test:
@@ -36,35 +36,3 @@ dependency_overrides:
 
 flutter:
   uses-material-design: true
-
-  
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

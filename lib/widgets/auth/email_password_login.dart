@@ -16,10 +16,12 @@ class EmailPasswordLogin extends StatefulWidget {
   const EmailPasswordLogin({
     super.key,
     this.onLogin,
+    this.onRegister,
     this.padding,
   });
 
   final void Function()? onLogin;
+  final void Function()? onRegister;
   final EdgeInsets? padding;
 
   @override
@@ -78,12 +80,21 @@ class _EmailPasswordLoginState extends State<EmailPasswordLogin> {
                   );
                 }
 
-                await loginOrRegister(
+                final re = await loginOrRegister(
                   email: emailController.text,
                   password: passwordController.text,
                 );
-
-                widget.onLogin?.call();
+                dog('$re');
+                if (widget.onRegister != null) {
+                  if (re.register) {
+                    widget.onRegister?.call();
+                  } else {
+                    dog('register is true');
+                    widget.onLogin?.call();
+                  }
+                } else {
+                  widget.onLogin?.call();
+                }
               },
               child: Text('login'.t.toUpperCase()),
             ),

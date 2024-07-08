@@ -4,6 +4,7 @@ import 'package:model_house/model_house.dart';
 /// To-do service
 ///
 /// This service is the only service for the whole to-do feature.
+
 class TodoService {
   static TodoService? _instance;
   static TodoService get instance => _instance ??= TodoService._();
