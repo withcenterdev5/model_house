@@ -4,6 +4,7 @@
 모델하우스를 이용하면 아름다운 디자인 뿐만아니라 회원 가입, 게시판, 채팅, 소셜 등의 기능을 모두 포함하는 완전한 소셜 앱을 매우 쉽고 빠르게 개발 할 수 있다.
 본 프로젝트는 오픈소스이며, 누구든지 참여 할 수 있다.
 
+
 ## 문서
 
 - [모델하우스 공식 문서](https://thruthesky.github.io/model_house/)
@@ -12,7 +13,15 @@
 
 - [Coding Guideline (English)](./etc/docs/README.en.md)
 
+
+## 읽어 볼 만한 문서
+
+- [데이터베이스 개요](https://thruthesky.github.io/model_house/database/)
+
+
 ## 기능
+
+
 
 
 ## 장기적으로 추가될 할 기능

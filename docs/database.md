@@ -1,5 +1,8 @@
 # 데이터베이스
 
+## 개요
+
+
 많은 개발자들이 Firestore 를 선호하는데 상세한 필터링과 Extensions 의 지원 등 다양한 활용성이 높기 때문이다. Realtime Database 는 구조가 단순하여 사용하기 쉽고 입/출력 속도가 빠르며, 저렴하다.
 
 `하우스`에서는 Firestore 와 Realtime Database 를 같이 사용하는데, 어떤 데이터베이스를 사용할지 정하는 규칙은 이렇다.
@@ -11,6 +14,11 @@
 
 특히, Realtime Database 를 사용하는 경우, 필요한 라이브러리들을 잘 만들어 놓아서, 직접 Realtime Database 를 액세스 할 필요 없도록 한다. 즉, 개발자가 편하게 쓸 수 있도록 해 준다.
 
+
+
+2019년 처음 FireFlutter 를 처음 시작할 때, 데이터베이스를 Firestore 위주로 발전을 해 왔는데, 메인 데이터베이스를 Realtime Database 로 변경을 하였다.
+Realtime Database 로 변경한 이유는 Firestore 에 비해 반응 속도가 매우 빠르고, 데이터구조가 JSON 방식으로 매우 단순하여 쿼리가 간편하고, 자동 백업 기능이 기본 장착되어져 있으며, Firestore 에 비해서 비용도 저렴한 등 여러가지 장점이 있어서 이다.
+주요 데이터 저장소를 Realtime Database 로 변경 후 좀 더 퀘적한 앱을 개발 할 수 있다는 생각을 가지게 되었지만, 문제는 Firestore 가 대세인 상태에서 Realtime Database 를 쓰는 프레임을 꺼려한다는 것이다. 그래서 어쩔 수 없이 2024년 7월 메인 데이터베이스를 Firestore 로 변경하게 되었다.
 
 
 ## 채팅
