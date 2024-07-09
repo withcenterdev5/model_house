@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model_house/house_test/unit_tests/todo/todo.unit_test.dart';
 import 'package:model_house/model_house.dart';
 
 class HouseTestScreen extends StatefulWidget {
@@ -16,22 +17,38 @@ class _HouseTestScreenState extends State<HouseTestScreen> {
       appBar: AppBar(
         title: const Text('House Test'),
       ),
-      body: Column(
-        children: [
-          AuthState(
-            builder: (user) => user == null
-                ? const Text('Not signed In')
-                : Text('Sign in with uid: ${user.uid}'),
-          ),
-          const Divider(),
-          const Text("To start house test, press the button below"),
-          ElevatedButton(
-            onPressed: () async {
-              // await User.fromUid('abc').updateOnAuthStateChange();
-            },
-            child: const Text('User Model Test'),
-          ),
-        ],
+      body: AuthState(
+        builder: (user) => user == null
+            ? const Text('Sign in to test')
+            : Column(
+                children: [
+                  Text('Signed in with uid: ${user.uid}'),
+                  const Divider(),
+                  const Text("To start house test, press the button below"),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // await User.fromUid('abc').updateOnAuthStateChange();
+                    },
+                    child: const Text('User Model Test'),
+                  ),
+                  const ElevatedButton(
+                    onPressed: testTaskCrud,
+                    child: Text('Task CRUD Test'),
+                  ),
+                  const ElevatedButton(
+                    onPressed: testTaskAssign,
+                    child: Text('Task Assign Test'),
+                  ),
+                  const ElevatedButton(
+                    onPressed: testDeleteField,
+                    child: Text('Task Delete Field Test'),
+                  ),
+                  const ElevatedButton(
+                    onPressed: testCreateWithPriority,
+                    child: Text('Task Create With Priority Test'),
+                  ),
+                ],
+              ),
       ),
     );
   }
