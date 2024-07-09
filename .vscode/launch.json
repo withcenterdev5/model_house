@@ -5,6 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Elementary - iOS Simulator - iPhone 14 Pro",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone 14 Pro",
+            "cwd": "apps/elementary",
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Elementary - iOS Simulator - iPhone 14 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iPhone 14 Pro Max",
+            "cwd": "apps/elementary",
+            "program": "lib/main.dart"
+        },
+        {
             "name": "Elementary - iOS Simulator - iPhone 15 Pro Max",
             "request": "launch",
             "type": "dart",
